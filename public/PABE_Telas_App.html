@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PABE - Telas do Aplicativo</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f0f2f5;
+      color: #1a1a1a;
+      padding: 40px 20px;
+    }
+
+    /* CAPA */
+    .cover {
+      text-align: center;
+      background: linear-gradient(135deg, #C0392B 0%, #7B241C 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 48px 32px 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 32px rgba(192,57,43,0.3);
+    }
+    .cover-icon { font-size: 64pt; line-height: 1; margin-bottom: 16px; }
+    .cover h1 { font-size: 36pt; font-weight: bold; letter-spacing: 4px; margin-bottom: 6px; }
+    .cover .tagline { font-size: 14pt; opacity: 0.85; margin-bottom: 4px; font-style: italic; }
+    .cover .sub { font-size: 11pt; opacity: 0.7; margin-bottom: 20px; }
+    .cover-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff;
+      font-size: 10pt;
+      font-weight: bold;
+      padding: 6px 20px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+    }
+
+    /* SEÇÃO */
+    .section-title {
+      font-size: 18pt;
+      font-weight: bold;
+      color: #C0392B;
+      border-left: 6px solid #C0392B;
+      padding-left: 14px;
+      margin: 40px 0 20px;
+    }
+
+    /* GRADE DE TELAS */
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+
+    /* CARD DE TELA */
+    .screen-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+      overflow: hidden;
+      page-break-inside: avoid;
+      border: 1px solid #e8e8e8;
+    }
+    .screen-card-label {
+      background: #2d2d2d;
+      color: #fff;
+      font-size: 9.5pt;
+      font-weight: bold;
+      padding: 8px 16px;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .screen-card-label span { opacity: 0.6; font-weight: normal; }
+    .screen-inner {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* MOCKUP GENÉRICO */
+    .mock-header {
+      background: linear-gradient(135deg, #C0392B, #922B21);
+      color: #fff;
+      padding: 16px 18px 14px;
+    }
+    .mock-header h2 { font-size: 13pt; font-weight: bold; margin-bottom: 2px; }
+    .mock-header p { font-size: 9pt; opacity: 0.8; }
+    .mock-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9pt;
+      opacity: 0.85;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .mock-body { padding: 14px 16px; background: #fff; }
+    .mock-body-dark { padding: 14px 16px; background: #111; }
+
+    /* BOTÕES MOCKUP */
+    .mock-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 14px;
+      border-radius: 7px;
+      font-size: 9.5pt;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+    .mock-btn-red { background: #C0392B; color: #fff; }
+    .mock-btn-outline { background: transparent; border: 1.5px solid #C0392B; color: #C0392B; }
+    .mock-btn-gray { background: #e5e7eb; color: #374151; }
+    .mock-btn-danger { background: #ef4444; color: #fff; }
+    .mock-btn-green { background: #22c55e; color: #fff; }
+    .mock-btn-sm { padding: 5px 10px; font-size: 8.5pt; }
+
+    /* CAMPO FORMULÁRIO */
+    .mock-field {
+      margin-bottom: 10px;
+    }
+    .mock-field label {
+      display: block;
+      font-size: 8pt;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .mock-field .field-input {
+      width: 100%;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 9.5pt;
+      color: #333;
+      background: #fafafa;
+    }
+    .mock-field .field-input.placeholder { color: #aaa; }
+
+    /* CARD ITEM */
+    .mock-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 12px;
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      margin-bottom: 7px;
+      background: #fafafa;
+    }
+    .mock-item-left { display: flex; align-items: center; gap: 8px; }
+    .mock-item-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      background: #f0f0f0;
+    }
+    .mock-item-title { font-size: 9.5pt; font-weight: bold; color: #222; }
+    .mock-item-sub { font-size: 8pt; color: #888; }
+    .mock-item-actions { display: flex; gap: 5px; }
+    .mock-action-btn {
+      width: 26px; height: 26px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+    }
+    .mock-action-edit { background: #eff6ff; color: #3b82f6; }
+    .mock-action-del { background: #fef2f2; color: #ef4444; }
+
+    /* CATEGORIA */
+    .mock-cat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1f2937;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 5px;
+    }
+    .mock-cat-title { font-size: 9.5pt; font-weight: bold; }
+    .mock-cat-badge {
+      background: #C0392B;
+      color: #fff;
+      font-size: 8pt;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .mock-cat-add-btn {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 8pt;
+      padding: 3px 8px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* BADGE DE STATUS */
+    .badge {
+      display: inline-block;
+      font-size: 7.5pt;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .badge-green { background: #d1fae5; color: #065f46; }
+    .badge-yellow { background: #fef3c7; color: #92400e; }
+    .badge-red { background: #fee2e2; color: #991b1b; }
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+
+    /* MÓDULO GRID (DASHBOARD) */
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      padding: 12px;
+      background: linear-gradient(135deg, #C0392B, #7B241C);
+    }
+    .dash-module {
+      background: linear-gradient(135deg, #1f2937, #111827);
+      border-radius: 10px;
+      padding: 10px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 70px;
+    }
+    .dash-module-icon {
+      width: 34px; height: 34px;
+      background: #374151;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+    .dash-module-name { color: #fff; font-size: 8pt; font-weight: bold; line-height: 1.2; }
+
+    /* LINHA DIVISÓRIA */
+    hr { border: none; border-top: 1px solid #e0e0e0; margin: 10px 0; }
+
+    /* RODAPÉ */
+    .footer {
+      text-align: center;
+      color: #aaa;
+      font-size: 9pt;
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    /* SEÇÃO DE IMPRESSÃO — container por tópico */
+    .print-section {
+      margin-bottom: 0;
+    }
+
+    /* IMPRESSÃO */
+    @media print {
+      body { background: #fff; padding: 0; margin: 0; }
+
+      /* Cada seção ocupa uma página própria */
+      .print-section {
+        page-break-before: always;
+        break-before: page;
+        padding: 20px;
+      }
+      .print-section:first-of-type {
+        page-break-before: avoid;
+        break-before: avoid;
+      }
+
+      /* Título da seção sempre junto com o conteúdo */
+      .section-title {
+        page-break-after: avoid;
+        break-after: avoid;
+        margin-top: 0;
+      }
+
+      /* Grid: 2 colunas na impressão */
+      .screens-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-bottom: 0;
+      }
+
+      /* Cards não quebram internamente */
+      .screen-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Rodapé só na última página */
+      .footer {
+        page-break-before: avoid;
+        break-before: avoid;
+      }
+
+      /* Forçar cores de fundo na impressão */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== TELA 1: LOGIN ==================== -->
+  <div class="print-section">
+  <div class="section-title">1. Tela de Acesso — Login e Cadastro</div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-label">🔐 Login <span>— Autenticação de Usuário</span></div>
+      <div class="screen-inner">
+        <img src="/tela_login_app.jpg" alt="Tela de Login PABE" style="width:100%; display:block; border-radius:0 0 14px 14px;" />
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">📝 Cadastro <span>— Novo Usuário (Etapa 1/3)</span></div>
+      <div class="screen-inner">
+        <div class="mock-header" style="text-align:center; padding:16px 18px 12px;">
+          <h2>Criar Conta</h2>
+          <p>Preencha os dados militares</p>
+        </div>
+        <div class="mock-body">
+          <div class="mock-field">
+            <label>Graduação</label>
+            <div class="field-input placeholder">Selecionar graduação</div>
+          </div>
+          <div class="mock-field">
+            <label>Nome de Guerra</label>
+            <div class="field-input placeholder">Ex: SILVA</div>
+          </div>
+          <div class="mock-field">
+            <label>Número BM</label>
+            <div class="field-input placeholder">Ex: 12345</div>
+          </div>
+          <div class="mock-field">
+            <label>CPF</label>
+            <div class="field-input placeholder">000.000.000-00</div>
+          </div>
+          <div class="mock-field">
+            <label>E-mail</label>
+            <div class="field-input placeholder">seu@email.com</div>
+          </div>
+          <button class="mock-btn mock-btn-red" style="width:100%; justify-content:center; margin-top:4px;">Próximo →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">✉️ Verificação OTP <span>— Etapa 2/3</span></div>
+      <div class="screen-inner">
+        <div class="mock-header" style="text-align:center; padding:16px 18px 12px;">
+          <h2>Verificar E-mail</h2>
+          <p>Código enviado para seu e-mail</p>
+        </div>
+        <div class="mock-body" style="text-align:center; padding:20px 18px;">
+          <div style="font-size:32px; margin-bottom:12px;">📬</div>
+          <p style="font-size:9.5pt; color:#555; margin-bottom:16px;">Digite o código de 6 dígitos enviado para <b>seu@email.com</b></p>
+          <div style="display:flex; gap:6px; justify-content:center; margin-bottom:14px;">
+            <div style="width:36px;height:44px;border:2px solid #C0392B;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:bold;color:#C0392B;">3</div>
+            <div style="width:36px;height:44px;border:2px solid #C0392B;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:bold;color:#C0392B;">8</div>
+            <div style="width:36px;height:44px;border:2px solid #C0392B;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:bold;color:#C0392B;">4</div>
+            <div style="width:36px;height:44px;border:1.5px solid #ddd;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#aaa;">-</div>
+            <div style="width:36px;height:44px;border:1.5px solid #ddd;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#aaa;">-</div>
+            <div style="width:36px;height:44px;border:1.5px solid #ddd;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#aaa;">-</div>
+          </div>
+          <button class="mock-btn mock-btn-red" style="width:100%; justify-content:center; margin-bottom:8px;">Verificar Código</button>
+          <div style="font-size:8pt; color:#888;">Não recebeu? <span style="color:#C0392B;">Reenviar código</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">⏳ Aguardando Aprovação <span>— Etapa 3/3</span></div>
+      <div class="screen-inner">
+        <div class="mock-header" style="text-align:center; padding:16px 18px 12px;">
+          <h2>Cadastro Enviado!</h2>
+          <p>Aguardando aprovação do administrador</p>
+        </div>
+        <div class="mock-body" style="text-align:center; padding:24px 18px;">
+          <div style="width:64px;height:64px;background:#fef3c7;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:30px;">⏳</div>
+          <p style="font-size:10pt; font-weight:bold; color:#333; margin-bottom:8px;">Cadastro recebido com sucesso!</p>
+          <p style="font-size:8.5pt; color:#666; line-height:1.5; margin-bottom:14px;">Seu cadastro foi enviado para aprovação. Você receberá um e-mail assim que o administrador aprovar seu acesso.</p>
+          <div style="background:#fef3c7; border:1px solid #f59e0b; border-radius:8px; padding:10px 14px; text-align:left;">
+            <div style="font-size:8pt; font-weight:bold; color:#92400e; margin-bottom:4px;">⚠️ Próximos passos:</div>
+            <div style="font-size:8pt; color:#92400e; line-height:1.6;">1. Aguardar e-mail de aprovação<br>2. Retornar e fazer login normalmente<br>3. Cadastrar dispositivo no Telegram</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- /print-section 1 -->
+
+  <div class="print-section">
+  <div class="section-title">2. Tela Principal — Dashboard</div>
+  <div class="screens-grid">
+
+    <div class="screen-card" style="grid-column: span 2;">
+      <div class="screen-card-label">🏠 Dashboard <span>— Tela Principal com Módulos do Sistema</span></div>
+      <div class="screen-inner">
+        <div class="mock-header" style="padding:18px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+            <div>
+              <h2>Bem-vindo</h2>
+              <p>SD SILVA — Posto Avançado de Boa Esperança</p>
+            </div>
+            <button class="mock-btn mock-btn-gray mock-btn-sm">↩ Sair</button>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:70px;height:70px;background:rgba(255,255,255,0.15);border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:28px;">🔥</div>
+            <div style="font-size:14pt; font-weight:bold;">PABE</div>
+            <div style="font-size:8pt; opacity:0.8;">Posto Avançado de Boa Esperança</div>
+          </div>
+        </div>
+        <div class="dash-grid">
+          <div class="dash-module"><div class="dash-module-icon">📢</div><div class="dash-module-name">Anúncios</div></div>
+          <div class="dash-module"><div class="dash-module-icon">🚛</div><div class="dash-module-name">Mapa Carga</div></div>
+          <div class="dash-module"><div class="dash-module-icon">📋</div><div class="dash-module-name">Cautelas</div></div>
+          <div class="dash-module"><div class="dash-module-icon">🔄</div><div class="dash-module-name">Alterações</div></div>
+          <div class="dash-module"><div class="dash-module-icon">📅</div><div class="dash-module-name">Escala</div></div>
+          <div class="dash-module"><div class="dash-module-icon">⏱️</div><div class="dash-module-name">Carga Horária</div></div>
+          <div class="dash-module"><div class="dash-module-icon">🌙</div><div class="dash-module-name">Sobreaviso</div></div>
+          <div class="dash-module"><div class="dash-module-icon">🚗</div><div class="dash-module-name">Gestão de Frota</div></div>
+          <div class="dash-module"><div class="dash-module-icon">💧</div><div class="dash-module-name">Hidrantes</div></div>
+          <div class="dash-module"><div class="dash-module-icon">🔥</div><div class="dash-module-name">Bombeiros</div></div>
+          <div class="dash-module"><div class="dash-module-icon">🏥</div><div class="dash-module-name">SAMU</div></div>
+          <div class="dash-module"><div class="dash-module-icon">👥</div><div class="dash-module-name">Contatos Úteis</div></div>
+          <div class="dash-module"><div class="dash-module-icon">🌿</div><div class="dash-module-name">Zona Rural</div></div>
+          <div class="dash-module"><div class="dash-module-icon">📱</div><div class="dash-module-name">Cadastrar Dispositivo</div></div>
+          <div class="dash-module"><div class="dash-module-icon">📄</div><div class="dash-module-name">Documentação</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- /print-section 2 -->
+
+  <div class="print-section">
+  <div class="section-title">3. Mapa de Carga</div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-label">🚛 Lista de Viaturas <span>— Seleção de Viatura</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <h2>Mapa de Carga</h2>
+          <p>Selecione a viatura para gerenciar</p>
+        </div>
+        <div class="mock-body">
+          <button class="mock-btn mock-btn-red mock-btn-sm" style="margin-bottom:10px;">+ Adicionar Viatura</button>
+          <div class="mock-item">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#fee2e2;">🚛</div>
+              <div><div class="mock-item-title">SAO</div><div class="mock-item-sub">139 materiais · 5 categorias</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <span class="badge badge-green">Recebido</span>
+              <button class="mock-action-btn mock-action-edit">✏️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+          <div class="mock-item">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#fee2e2;">🚒</div>
+              <div><div class="mock-item-title">ASL</div><div class="mock-item-sub">87 materiais · 7 categorias</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <span class="badge badge-yellow">Pendente</span>
+              <button class="mock-action-btn mock-action-edit">✏️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+          <div class="mock-item">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#fee2e2;">🚐</div>
+              <div><div class="mock-item-title">VOB</div><div class="mock-item-sub">52 materiais · 4 categorias</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <span class="badge badge-yellow">Pendente</span>
+              <button class="mock-action-btn mock-action-edit">✏️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+          <div class="mock-item">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#fee2e2;">🚑</div>
+              <div><div class="mock-item-title">TPO</div><div class="mock-item-sub">64 materiais · 6 categorias</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <span class="badge badge-green">Recebido</span>
+              <button class="mock-action-btn mock-action-edit">✏️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">📦 Materiais da Viatura SAO <span>— Categorias e Itens</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <div class="mock-back">← Voltar</div>
+          <h2>SAO — Materiais (139)</h2>
+          <p>Organizado por categorias</p>
+        </div>
+        <div class="mock-body" style="background:#111; padding:12px;">
+          <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
+            <button class="mock-btn mock-btn-red mock-btn-sm">+ Adicionar Material</button>
+            <button class="mock-btn mock-btn-danger mock-btn-sm">🗑️ Excluir Viatura</button>
+            <button class="mock-btn mock-btn-gray mock-btn-sm">⇅ Reordenar</button>
+          </div>
+          <!-- Categoria 1 -->
+          <div class="mock-cat-header">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div class="mock-cat-title">PRATELEIRA 01</div>
+              <span class="mock-cat-badge">9</span>
+            </div>
+            <div style="display:flex; gap:5px; align-items:center;">
+              <button class="mock-cat-add-btn">+ Add</button>
+              <button class="mock-action-btn mock-action-del" style="background:rgba(239,68,68,0.2);">🗑️</button>
+            </div>
+          </div>
+          <div style="padding:0 4px 8px;">
+            <div class="mock-item" style="background:#1a1a1a; border-color:#333;">
+              <div><div class="mock-item-title" style="color:#fff;">Colchonete</div><div class="mock-item-sub">Qtd: 7</div></div>
+              <div class="mock-item-actions">
+                <button class="mock-action-btn mock-action-edit">✏️</button>
+                <button class="mock-action-btn mock-action-del">🗑️</button>
+              </div>
+            </div>
+            <div class="mock-item" style="background:#1a1a1a; border-color:#333;">
+              <div><div class="mock-item-title" style="color:#fff;">Tendas</div><div class="mock-item-sub">Qtd: 2</div></div>
+              <div class="mock-item-actions">
+                <button class="mock-action-btn mock-action-edit">✏️</button>
+                <button class="mock-action-btn mock-action-del">🗑️</button>
+              </div>
+            </div>
+            <div class="mock-item" style="background:#1a1a1a; border-color:#333;">
+              <div><div class="mock-item-title" style="color:#fff;">Ked</div><div class="mock-item-sub">Qtd: 1</div></div>
+              <div class="mock-item-actions">
+                <button class="mock-action-btn mock-action-edit">✏️</button>
+                <button class="mock-action-btn mock-action-del">🗑️</button>
+              </div>
+            </div>
+          </div>
+          <!-- Categoria 2 -->
+          <div class="mock-cat-header">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div class="mock-cat-title">PRATELEIRA 02</div>
+              <span class="mock-cat-badge">6</span>
+            </div>
+            <div style="display:flex; gap:5px; align-items:center;">
+              <button class="mock-cat-add-btn">+ Add</button>
+              <button class="mock-action-btn mock-action-del" style="background:rgba(239,68,68,0.2);">🗑️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">➕ Adicionar Material <span>— Diálogo de Novo Item</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <h2>Adicionar Material</h2>
+          <p>Viatura: SAO · Categoria: PRATELEIRA 01</p>
+        </div>
+        <div class="mock-body">
+          <div class="mock-field">
+            <label>Nome do Material *</label>
+            <div class="field-input">Catraca e fita de 10 toneladas</div>
+          </div>
+          <div class="mock-field">
+            <label>Quantidade *</label>
+            <div class="field-input">1</div>
+          </div>
+          <div class="mock-field">
+            <label>Categoria (opcional)</label>
+            <div class="field-input placeholder">Selecionar categoria existente...</div>
+          </div>
+          <div style="background:#f0fdf4; border:1px solid #86efac; border-radius:8px; padding:10px; margin-bottom:12px; font-size:8.5pt; color:#166534;">
+            💡 Ao selecionar uma categoria existente, o material será adicionado diretamente nela.
+          </div>
+          <div style="display:flex; gap:8px; margin-top:6px;">
+            <button class="mock-btn mock-btn-gray" style="flex:1; justify-content:center;">Cancelar</button>
+            <button class="mock-btn mock-btn-red" style="flex:1; justify-content:center;">Adicionar</button>
+          </div>
+          <div style="margin-top:10px; background:#fef3c7; border:1px solid #fbbf24; border-radius:8px; padding:8px; font-size:7.5pt; color:#92400e;">
+            🔔 Notificação automática será enviada via Telegram para todos os militares
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- /print-section 3 -->
+
+  <div class="print-section">
+  <div class="section-title">4. Escala de Serviço</div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-label">📅 Escala do Mês <span>— Organização por ALAs</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <div class="mock-back">← Voltar</div>
+          <h2>Escala de Serviço</h2>
+          <p>Maio de 2026</p>
+        </div>
+        <div class="mock-body">
+          <div style="display:flex; gap:6px; margin-bottom:10px;">
+            <button class="mock-btn mock-btn-red mock-btn-sm">+ Adicionar Militar</button>
+            <button class="mock-btn mock-btn-gray mock-btn-sm">Selecionar Mês</button>
+          </div>
+          <!-- ALA 1 -->
+          <div class="mock-cat-header" style="background:#1e3a5f; margin-bottom:6px;">
+            <span class="mock-cat-title">ALA 1</span>
+            <span class="mock-cat-badge" style="background:#1d4ed8;">4 militares</span>
+          </div>
+          <div class="mock-item"><div class="mock-item-left"><div class="mock-item-icon" style="background:#dbeafe; font-size:11px;">SD</div><div><div class="mock-item-title">SILVA</div><div class="mock-item-sub">Condutor · Sem observação</div></div></div><div class="mock-item-actions"><button class="mock-action-btn mock-action-edit">✏️</button><button class="mock-action-btn mock-action-del">🗑️</button></div></div>
+          <div class="mock-item"><div class="mock-item-left"><div class="mock-item-icon" style="background:#dbeafe; font-size:11px;">CB</div><div><div class="mock-item-title">COSTA</div><div class="mock-item-sub">Chefia de Turno</div></div></div><div class="mock-item-actions"><button class="mock-action-btn mock-action-edit">✏️</button><button class="mock-action-btn mock-action-del">🗑️</button></div></div>
+          <!-- ALA 2 -->
+          <div class="mock-cat-header" style="background:#1e3a5f; margin-top:8px; margin-bottom:6px;">
+            <span class="mock-cat-title">ALA 2</span>
+            <span class="mock-cat-badge" style="background:#1d4ed8;">3 militares</span>
+          </div>
+          <div class="mock-item"><div class="mock-item-left"><div class="mock-item-icon" style="background:#dbeafe; font-size:11px;">3S</div><div><div class="mock-item-title">OLIVEIRA</div><div class="mock-item-sub">Socorrista</div></div></div><div class="mock-item-actions"><button class="mock-action-btn mock-action-edit">✏️</button><button class="mock-action-btn mock-action-del">🗑️</button></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">➕ Adicionar Militar <span>— Diálogo de Inclusão na Escala</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <h2>Adicionar Militar</h2>
+          <p>Escala: Maio de 2026</p>
+        </div>
+        <div class="mock-body">
+          <div class="mock-field">
+            <label>Nome de Guerra *</label>
+            <div class="field-input">FERREIRA</div>
+          </div>
+          <div class="mock-field">
+            <label>ALA *</label>
+            <div class="field-input placeholder">Selecionar ALA (1, 2, 3...)</div>
+          </div>
+          <div class="mock-field">
+            <label>Categoria (ex: Condutor, Chefia)</label>
+            <div class="field-input placeholder">Opcional</div>
+          </div>
+          <div class="mock-field">
+            <label>Observação</label>
+            <div class="field-input placeholder">Observação adicional</div>
+          </div>
+          <div style="display:flex; gap:8px; margin-top:8px;">
+            <button class="mock-btn mock-btn-gray" style="flex:1; justify-content:center;">Cancelar</button>
+            <button class="mock-btn mock-btn-red" style="flex:1; justify-content:center;">Adicionar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- /print-section 4 -->
+
+  <div class="print-section">
+  <div class="section-title">5. Cautelas</div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-label">📋 Lista de Cautelas <span>— Abertas e Encerradas</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <div class="mock-back">← Voltar</div>
+          <h2>Cautelas</h2>
+          <p>Controle de empréstimos</p>
+        </div>
+        <div class="mock-body">
+          <button class="mock-btn mock-btn-red mock-btn-sm" style="margin-bottom:10px;">+ Nova Cautela</button>
+          <div style="font-size:8pt; font-weight:bold; color:#C0392B; margin-bottom:6px; text-transform:uppercase;">Abertas (3)</div>
+          <div class="mock-item" style="border-left:3px solid #f59e0b;">
+            <div><div class="mock-item-title">Motosserra Stihl</div><div class="mock-item-sub">SD SILVA · 05/05/2026</div></div>
+            <div><span class="badge badge-yellow">Pendente</span><button class="mock-btn mock-btn-green mock-btn-sm" style="margin-left:5px;">Devolver</button></div>
+          </div>
+          <div class="mock-item" style="border-left:3px solid #f59e0b;">
+            <div><div class="mock-item-title">Lanterna tática</div><div class="mock-item-sub">CB COSTA · 03/05/2026</div></div>
+            <div><span class="badge badge-yellow">Pendente</span><button class="mock-btn mock-btn-green mock-btn-sm" style="margin-left:5px;">Devolver</button></div>
+          </div>
+          <hr>
+          <div style="font-size:8pt; font-weight:bold; color:#666; margin-bottom:6px; text-transform:uppercase;">Encerradas (12)</div>
+          <div class="mock-item" style="opacity:0.7;">
+            <div><div class="mock-item-title">Capacete motosserra</div><div class="mock-item-sub">3S OLIVEIRA · 01/04/2026</div></div>
+            <span class="badge badge-green">Devolvido</span>
+          </div>
+          <div class="mock-item" style="opacity:0.7;">
+            <div><div class="mock-item-title">Rádio comunicador</div><div class="mock-item-sub">SD MENDES · 28/03/2026</div></div>
+            <span class="badge badge-green">Devolvido</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">↩️ Registrar Devolução <span>— Encerramento de Cautela</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <h2>Registrar Devolução</h2>
+          <p>Material: Motosserra Stihl</p>
+        </div>
+        <div class="mock-body">
+          <div style="background:#fef3c7; border:1px solid #fbbf24; border-radius:8px; padding:10px; margin-bottom:12px;">
+            <div style="font-size:8pt; font-weight:bold; color:#92400e;">Cautela em aberto:</div>
+            <div style="font-size:8.5pt; color:#78350f; margin-top:4px;"><b>Material:</b> Motosserra Stihl<br><b>Solicitante:</b> SD SILVA<br><b>Data:</b> 05/05/2026</div>
+          </div>
+          <div class="mock-field">
+            <label>Data de Devolução *</label>
+            <div class="field-input">07/05/2026</div>
+          </div>
+          <div class="mock-field">
+            <label>Militar que Recebeu *</label>
+            <div class="field-input placeholder">Nome do militar que recebeu</div>
+          </div>
+          <div style="display:flex; gap:8px; margin-top:8px;">
+            <button class="mock-btn mock-btn-gray" style="flex:1; justify-content:center;">Cancelar</button>
+            <button class="mock-btn mock-btn-green" style="flex:1; justify-content:center;">✓ Confirmar Devolução</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- /print-section 5 -->
+
+  <div class="print-section">
+  <div class="section-title">6. Hidrantes e Zona Rural</div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-label">💧 Hidrantes <span>— Mapa e Lista por Cidade</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <div class="mock-back">← Voltar</div>
+          <h2>Hidrantes</h2>
+          <p>Pontos de abastecimento</p>
+        </div>
+        <div class="mock-body">
+          <div style="display:flex; gap:6px; margin-bottom:10px;">
+            <button class="mock-btn mock-btn-red mock-btn-sm">+ Adicionar Hidrante</button>
+            <select style="border:1.5px solid #e0e0e0; border-radius:6px; font-size:8.5pt; padding:4px 8px;">
+              <option>Todas as cidades</option>
+              <option selected>Boa Esperança</option>
+            </select>
+          </div>
+          <div class="mock-item">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#dbeafe; font-size:16px;">💧</div>
+              <div><div class="mock-item-title">Hidrante Central</div><div class="mock-item-sub">Rua XV de Novembro, 120 · Boa Esperança</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#d1fae5; color:#065f46;">🗺️</button>
+              <button class="mock-action-btn mock-action-edit">✏️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+          <div class="mock-item">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#dbeafe; font-size:16px;">💧</div>
+              <div><div class="mock-item-title">Hidrante Praça Central</div><div class="mock-item-sub">Praça da República · Boa Esperança</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#d1fae5; color:#065f46;">🗺️</button>
+              <button class="mock-action-btn mock-action-edit">✏️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+          <div class="mock-item">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#dbeafe; font-size:16px;">💧</div>
+              <div><div class="mock-item-title">Hidrante Bairro Industrial</div><div class="mock-item-sub">Av. Industrial, 450 · Boa Esperança</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#d1fae5; color:#065f46;">🗺️</button>
+              <button class="mock-action-btn mock-action-edit">✏️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">🌿 Zona Rural <span>— Pontos de Referência</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <div class="mock-back">← Voltar · Fazenda São João</div>
+          <h2>Zona Rural</h2>
+          <p>Pontos de referência rurais</p>
+        </div>
+        <div class="mock-body">
+          <div style="display:flex; gap:6px; margin-bottom:10px;">
+            <button class="mock-btn mock-btn-red mock-btn-sm">+ Nova Cidade</button>
+          </div>
+          <!-- Cidades -->
+          <div class="mock-item" style="background:#f0fdf4; border-left:3px solid #22c55e;">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#d1fae5; font-size:16px;">🏘️</div>
+              <div><div class="mock-item-title">Boa Esperança</div><div class="mock-item-sub">8 pontos cadastrados</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#f3f4f6; color:#374151;">→</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+          <div class="mock-item" style="background:#f0fdf4; border-left:3px solid #22c55e;">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#d1fae5; font-size:16px;">🏘️</div>
+              <div><div class="mock-item-title">Conceição da Barra</div><div class="mock-item-sub">5 pontos cadastrados</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#f3f4f6; color:#374151;">→</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+          <div style="margin-top:10px; font-size:8pt; font-weight:bold; color:#555; text-transform:uppercase;">Pontos — Boa Esperança</div>
+          <div class="mock-item" style="margin-top:6px;">
+            <div><div class="mock-item-title">Fazenda São João</div><div class="mock-item-sub">-20.8456789, -45.1234567</div></div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#d1fae5; color:#065f46;">🗺️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- /print-section 6 -->
+
+  <div class="print-section">
+  <div class="section-title">7. Contatos — Bombeiros, SAMU e Contatos Úteis</div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-label">🔥 Bombeiros <span>— Diretório de Militares</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <div class="mock-back">← Voltar</div>
+          <h2>Bombeiros</h2>
+          <p>Contatos da guarnição</p>
+        </div>
+        <div class="mock-body">
+          <button class="mock-btn mock-btn-red mock-btn-sm" style="margin-bottom:10px;">+ Adicionar Contato</button>
+          <div class="mock-item">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#fee2e2; font-size:13px;">🔥</div>
+              <div><div class="mock-item-title">Cap RODRIGUES</div><div class="mock-item-sub">(35) 9 9999-0001</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#d1fae5; color:#065f46; font-size:13px;">📞</button>
+              <button class="mock-action-btn mock-action-edit">✏️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+          <div class="mock-item">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#fee2e2; font-size:13px;">🔥</div>
+              <div><div class="mock-item-title">Ten ALMEIDA</div><div class="mock-item-sub">(35) 9 9999-0002</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#d1fae5; color:#065f46; font-size:13px;">📞</button>
+              <button class="mock-action-btn mock-action-edit">✏️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+          <div class="mock-item">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#fee2e2; font-size:13px;">🔥</div>
+              <div><div class="mock-item-title">3S PEREIRA</div><div class="mock-item-sub">(35) 9 9999-0003</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#d1fae5; color:#065f46; font-size:13px;">📞</button>
+              <button class="mock-action-btn mock-action-edit">✏️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">🏥 SAMU <span>— Contatos da Equipe SAMU</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <div class="mock-back">← Voltar</div>
+          <h2>SAMU</h2>
+          <p>Equipe de socorro médico</p>
+        </div>
+        <div class="mock-body">
+          <button class="mock-btn mock-btn-red mock-btn-sm" style="margin-bottom:10px;">+ Adicionar Contato</button>
+          <div class="mock-item">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#d1fae5; font-size:13px;">🏥</div>
+              <div><div class="mock-item-title">Médico Regulador</div><div class="mock-item-sub">Dr. SANTOS · (35) 9 8888-0001</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#d1fae5; color:#065f46; font-size:13px;">📞</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+          <div class="mock-item">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#d1fae5; font-size:13px;">🚑</div>
+              <div><div class="mock-item-title">Técnico em Enfermagem</div><div class="mock-item-sub">LIMA · (35) 9 8888-0002</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#d1fae5; color:#065f46; font-size:13px;">📞</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">👥 Contatos Úteis <span>— Agenda por Categorias</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <div class="mock-back">← Voltar</div>
+          <h2>Contatos Úteis</h2>
+          <p>Organizados por categoria</p>
+        </div>
+        <div class="mock-body">
+          <button class="mock-btn mock-btn-red mock-btn-sm" style="margin-bottom:10px;">+ Nova Categoria</button>
+          <div class="mock-item" style="background:#f0f9ff; border-left:3px solid #0ea5e9;">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#bae6fd;">🏛️</div>
+              <div><div class="mock-item-title">Prefeitura</div><div class="mock-item-sub">4 contatos</div></div>
+            </div>
+            <div><button class="mock-action-btn" style="background:#f3f4f6;">→</button></div>
+          </div>
+          <div class="mock-item" style="background:#f0f9ff; border-left:3px solid #0ea5e9;">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#bae6fd;">🏥</div>
+              <div><div class="mock-item-title">Hospital Regional</div><div class="mock-item-sub">6 contatos</div></div>
+            </div>
+            <div><button class="mock-action-btn" style="background:#f3f4f6;">→</button></div>
+          </div>
+          <div class="mock-item" style="background:#f0f9ff; border-left:3px solid #0ea5e9;">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#bae6fd;">🚓</div>
+              <div><div class="mock-item-title">Polícia Militar</div><div class="mock-item-sub">3 contatos</div></div>
+            </div>
+            <div><button class="mock-action-btn" style="background:#f3f4f6;">→</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- /print-section 7 -->
+
+  <div class="print-section">
+  <div class="section-title">8. Gestão de Frota e Alterações</div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-label">🚗 Gestão de Frota <span>— Histórico de Manutenções</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <div class="mock-back">← Voltar · SAO-123</div>
+          <h2>Gestão de Frota</h2>
+          <p>Histórico de manutenções</p>
+        </div>
+        <div class="mock-body">
+          <button class="mock-btn mock-btn-red mock-btn-sm" style="margin-bottom:10px;">+ Nova Manutenção</button>
+          <div class="mock-item">
+            <div>
+              <div class="mock-item-title">Troca de óleo e filtros</div>
+              <div class="mock-item-sub">KM: 45.832 · 02/05/2026</div>
+              <div class="mock-item-sub">📍 Oficina Mecânica Central</div>
+            </div>
+            <button class="mock-action-btn mock-action-del">🗑️</button>
+          </div>
+          <div class="mock-item">
+            <div>
+              <div class="mock-item-title">Revisão dos freios</div>
+              <div class="mock-item-sub">KM: 42.100 · 15/03/2026</div>
+              <div class="mock-item-sub">📍 Mecânica do Corpo</div>
+            </div>
+            <button class="mock-action-btn mock-action-del">🗑️</button>
+          </div>
+          <div class="mock-item">
+            <div>
+              <div class="mock-item-title">Alinhamento e balanceamento</div>
+              <div class="mock-item-sub">KM: 38.500 · 10/01/2026</div>
+              <div class="mock-item-sub">📍 Pneus Brasil</div>
+            </div>
+            <button class="mock-action-btn mock-action-del">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">⚠️ Alterações <span>— Registro de Ocorrências</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <div class="mock-back">← Voltar</div>
+          <h2>Alterações</h2>
+          <p>Ocorrências e pendências</p>
+        </div>
+        <div class="mock-body">
+          <button class="mock-btn mock-btn-red mock-btn-sm" style="margin-bottom:10px;">+ Nova Alteração</button>
+          <div style="font-size:8pt; font-weight:bold; color:#C0392B; margin-bottom:6px; text-transform:uppercase;">Em Aberto (2)</div>
+          <div class="mock-item" style="border-left:3px solid #ef4444;">
+            <div>
+              <div class="mock-item-title">Mangueira do SAO com vazamento</div>
+              <div class="mock-item-sub">Identificado por: SD SILVA · 06/05/2026</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px; align-items:flex-end;">
+              <span class="badge badge-red">Aberta</span>
+              <button class="mock-btn mock-btn-green mock-btn-sm">✓ Resolver</button>
+            </div>
+          </div>
+          <hr style="margin: 8px 0;">
+          <div style="font-size:8pt; font-weight:bold; color:#666; margin-bottom:6px; text-transform:uppercase;">Resolvidas (8)</div>
+          <div class="mock-item" style="opacity:0.7; border-left:3px solid #22c55e;">
+            <div>
+              <div class="mock-item-title">Pneu furado ASL</div>
+              <div class="mock-item-sub">Resolvido por: CB COSTA · 04/05/2026</div>
+            </div>
+            <span class="badge badge-green">Resolvida</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- /print-section 8 -->
+
+  <div class="print-section">
+  <div class="section-title">9. Sobreaviso e Anúncios</div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-label">🌙 Sobreaviso <span>— Documentos por Mês</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <div class="mock-back">← Voltar</div>
+          <h2>Sobreaviso</h2>
+          <p>Documentos do sobreaviso</p>
+        </div>
+        <div class="mock-body">
+          <button class="mock-btn mock-btn-red mock-btn-sm" style="margin-bottom:10px;">📎 Enviar Documento</button>
+          <div class="mock-item" style="background:#fef9f0; border-left:3px solid #f59e0b;">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#fef3c7; font-size:16px;">📄</div>
+              <div><div class="mock-item-title">Sobreaviso Maio 2026</div><div class="mock-item-sub">Maio · Enviado em 01/05/2026</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#dbeafe; color:#1d4ed8;">👁️</button>
+              <button class="mock-action-btn" style="background:#d1fae5; color:#065f46;">⬇️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+          <div class="mock-item" style="background:#fef9f0; border-left:3px solid #f59e0b;">
+            <div class="mock-item-left">
+              <div class="mock-item-icon" style="background:#fef3c7; font-size:16px;">📄</div>
+              <div><div class="mock-item-title">Sobreaviso Abril 2026</div><div class="mock-item-sub">Abril · Enviado em 01/04/2026</div></div>
+            </div>
+            <div class="mock-item-actions">
+              <button class="mock-action-btn" style="background:#dbeafe; color:#1d4ed8;">👁️</button>
+              <button class="mock-action-btn" style="background:#d1fae5; color:#065f46;">⬇️</button>
+              <button class="mock-action-btn mock-action-del">🗑️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">📢 Anúncios <span>— Mural de Comunicados</span></div>
+      <div class="screen-inner">
+        <!-- Header vermelho igual ao app -->
+        <div style="background:#dc2626; color:#fff; padding:14px 16px; display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-size:18px;">←</span>
+          <span style="font-size:13pt; font-weight:bold;">Anúncios</span>
+          <span style="font-size:18px;">＋</span>
+        </div>
+        <!-- Corpo com gradiente vermelho escuro (fire-gradient) -->
+        <div style="background:linear-gradient(180deg,#7f1d1d 0%,#450a0a 100%); padding:20px 16px;">
+          <!-- Ícone central -->
+          <div style="display:flex; flex-direction:column; align-items:center; text-align:center; margin-bottom:18px;">
+            <div style="width:90px; height:90px; background:rgba(0,0,0,0.4); border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+              <span style="font-size:38px;">✏️</span>
+            </div>
+            <div style="font-size:14pt; font-weight:bold; color:#fff; margin-bottom:8px;">Anúncios</div>
+            <div style="display:flex; align-items:flex-start; gap:6px; max-width:240px;">
+              <span style="font-size:12px; color:#60a5fa; flex-shrink:0; margin-top:2px;">🔧</span>
+              <p style="font-size:8.5pt; color:rgba(255,255,255,0.75); text-align:left; line-height:1.5; margin:0;">Área destinada para realização dos anúncios diários realizados pelo Posto Avançado de Boa Esperança</p>
+            </div>
+          </div>
+          <!-- Lista de anúncios -->
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="background:#dc2626; border-radius:14px; padding:14px 14px; display:flex; align-items:center; gap:10px;">
+              <div style="width:48px; height:48px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="font-size:18px;">📋</span></div>
+              <div style="flex:1; font-size:10pt; font-weight:600; color:#fff;">Operacional diário</div>
+              <div style="width:36px; height:36px; background:rgba(0,0,0,0.3); border-radius:8px; display:flex; align-items:center; justify-content:center;"><span style="font-size:13px;">🗑️</span></div>
+            </div>
+            <div style="background:#dc2626; border-radius:14px; padding:14px 14px; display:flex; align-items:center; gap:10px;">
+              <div style="width:48px; height:48px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="font-size:18px;">🚛</span></div>
+              <div style="flex:1; font-size:10pt; font-weight:600; color:#fff;">Viaturas e Materiais</div>
+              <div style="width:36px; height:36px; background:rgba(0,0,0,0.3); border-radius:8px; display:flex; align-items:center; justify-content:center;"><span style="font-size:13px;">🗑️</span></div>
+            </div>
+            <div style="background:#dc2626; border-radius:14px; padding:14px 14px; display:flex; align-items:center; gap:10px;">
+              <div style="width:48px; height:48px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><span style="font-size:18px;">📢</span></div>
+              <div style="flex:1; font-size:10pt; font-weight:600; color:#fff;">Anúncio Geral</div>
+              <div style="width:36px; height:36px; background:rgba(0,0,0,0.3); border-radius:8px; display:flex; align-items:center; justify-content:center;"><span style="font-size:13px;">🗑️</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- /print-section 9 -->
+
+  <div class="print-section">
+  <div class="section-title">10. Notificações via Telegram</div>
+  <div class="screens-grid">
+
+    <div class="screen-card">
+      <div class="screen-card-label">📱 Cadastrar Dispositivo <span>— Registro no Bot Telegram</span></div>
+      <div class="screen-inner">
+        <div class="mock-header">
+          <div class="mock-back">← Voltar</div>
+          <h2>Cadastrar Dispositivo</h2>
+          <p>Receber notificações no Telegram</p>
+        </div>
+        <div class="mock-body">
+          <div style="text-align:center; padding:10px 0 14px;">
+            <div style="font-size:36px; margin-bottom:8px;">🤖</div>
+            <div style="font-size:9.5pt; font-weight:bold; color:#333; margin-bottom:4px;">Bot PABE Notificações</div>
+          </div>
+          <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px; padding:12px; margin-bottom:12px;">
+            <div style="font-size:8.5pt; font-weight:bold; color:#0369a1; margin-bottom:8px;">📋 Como se cadastrar:</div>
+            <ol style="font-size:8.5pt; color:#0369a1; margin-left:16px; line-height:1.8;">
+              <li>Abra o Telegram</li>
+              <li>Busque por: <b>@pabe_bombeiros_bot</b></li>
+              <li>Envie a mensagem <b>/start</b></li>
+              <li>Copie o código e cole abaixo</li>
+            </ol>
+          </div>
+          <div class="mock-field">
+            <label>Código recebido no Telegram</label>
+            <div class="field-input placeholder">Cole aqui o código do bot</div>
+          </div>
+          <button class="mock-btn mock-btn-red" style="width:100%; justify-content:center;">✓ Cadastrar Dispositivo</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-card-label">🔔 Notificação Telegram <span>— Exemplo de Mensagem Recebida</span></div>
+      <div class="screen-inner">
+        <div style="background:#1e2a3a; padding:12px;">
+          <div style="font-size:8pt; color:#8899aa; text-align:center; margin-bottom:10px;">Telegram — Bot PABE 🤖</div>
+          <!-- Mensagem adição -->
+          <div style="background:#1a3040; border-radius:12px 12px 12px 4px; padding:12px 14px; margin-bottom:8px; border-left:3px solid #22c55e;">
+            <div style="font-size:9pt; color:#fff; line-height:1.7;">
+              ➕ <b>Material Adicionado</b><br><br>
+              🚛 <b>Viatura:</b> SAO<br>
+              📦 <b>Categoria:</b> PRATELEIRA 04<br>
+              📦 <b>Material:</b> Catraca e fita de 10 toneladas<br>
+              🔢 <b>Quantidade:</b> 1<br>
+              📅 <b>Data/Hora:</b> 07/05/2026 08:42<br>
+              👤 <b>Militar:</b> SD SILVA
+            </div>
+            <div style="font-size:7.5pt; color:#8899aa; margin-top:6px; text-align:right;">08:42 ✓✓</div>
+          </div>
+          <!-- Mensagem exclusão -->
+          <div style="background:#3a1a1a; border-radius:12px 12px 12px 4px; padding:12px 14px; margin-bottom:8px; border-left:3px solid #ef4444;">
+            <div style="font-size:9pt; color:#fff; line-height:1.7;">
+              ❌ <b>Material Removido</b><br><br>
+              🚛 <b>Viatura:</b> ASL<br>
+              📦 <b>Material:</b> Capacete motosserra<br>
+              🔢 <b>Quantidade:</b> 2<br>
+              📍 <b>Destino:</b> Manutenção<br>
+              👤 <b>Militar:</b> CB COSTA
+            </div>
+            <div style="font-size:7.5pt; color:#8899aa; margin-top:6px; text-align:right;">09:15 ✓✓</div>
+          </div>
+          <!-- Mensagem aprovação -->
+          <div style="background:#1a2a1a; border-radius:12px 12px 12px 4px; padding:12px 14px; border-left:3px solid #f59e0b;">
+            <div style="font-size:9pt; color:#fff; line-height:1.7;">
+              ✅ <b>Novo Usuário Aprovado</b><br><br>
+              👤 <b>Militar:</b> SD FERREIRA<br>
+              📧 <b>E-mail:</b> ferreira@bombeiros.mg<br>
+              📅 <b>Data:</b> 07/05/2026
+            </div>
+            <div style="font-size:7.5pt; color:#8899aa; margin-top:6px; text-align:right;">09:45 ✓✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- /print-section 10 -->
+
+  <!-- RODAPÉ -->
+  <div class="footer">
+    PABE – Plataforma de Apoio ao Bombeiro Especializado &nbsp;|&nbsp; Corpo de Bombeiros Militar de Minas Gerais<br>
+    Posto Avançado de Boa Esperança &nbsp;|&nbsp; Versão 4.1.0 &nbsp;|&nbsp; Maio/2026
+  </div>
+
+</body>
+</html>

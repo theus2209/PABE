@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>PABE - Limpeza de Cache</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 24px;
+            background: url('https://cdn-ai.onspace.ai/onspace/project/image/S8uryzFeEHCSjf5uxRNJKS/icon-512.png');
+            background-size: cover;
+            border-radius: 50%;
+        }
+        h1 {
+            color: #dc2626;
+            font-size: 24px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .status {
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+            padding: 16px;
+            margin-bottom: 24px;
+            text-align: left;
+            border-radius: 8px;
+        }
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+        .status-item:last-child { margin-bottom: 0; }
+        .icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        .icon.loading {
+            border: 3px solid #fecaca;
+            border-top-color: #dc2626;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .icon.success {
+            background: #22c55e;
+            border-radius: 50%;
+            position: relative;
+        }
+        .icon.success::after {
+            content: '✓';
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            font-weight: bold;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+            display: none;
+        }
+        .btn:hover { background: #b91c1c; }
+        .btn:active { background: #991b1b; }
+        .info {
+            font-size: 13px;
+            color: #666;
+            margin-top: 16px;
+            line-height: 1.6;
+        }
+        .version {
+            font-size: 12px;
+            color: #999;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #e5e5e5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo"></div>
+        <h1>Limpeza de Cache</h1>
+        
+        <div class="status" id="status">
+            <div class="status-item">
+                <div class="icon loading" id="icon1"></div>
+                <span id="text1">Limpando cache do navegador...</span>
+            </div>
+            <div class="status-item">
+                <div class="icon loading" id="icon2"></div>
+                <span id="text2">Removendo service workers...</span>
+            </div>
+            <div class="status-item">
+                <div class="icon loading" id="icon3"></div>
+                <span id="text3">Limpando armazenamento local...</span>
+            </div>
+            <div class="status-item">
+                <div class="icon loading" id="icon4"></div>
+                <span id="text4">Preparando para redirecionar...</span>
+            </div>
+        </div>
+        
+        <button class="btn" id="btnAcessar">Acessar PABE</button>
+        
+        <p class="info">
+            Este processo remove todos os dados temporários antigos e garante que você acesse a versão mais recente do sistema.
+        </p>
+        
+        <p class="version">PABE v4.0.0 - Sistema de Limpeza</p>
+    </div>
+
+    <script>
+        console.log('🧹 Iniciando limpeza de cache...');
+        
+        let step = 0;
+        const steps = [
+            { icon: 'icon1', text: 'text1', action: clearCaches },
+            { icon: 'icon2', text: 'text2', action: clearServiceWorkers },
+            { icon: 'icon3', text: 'text3', action: clearStorage },
+            { icon: 'icon4', text: 'text4', action: prepareRedirect }
+        ];
+
+        async function clearCaches() {
+            console.log('1️⃣ Limpando cache...');
+            if ('caches' in window) {
+                const cacheNames = await caches.keys();
+                await Promise.all(cacheNames.map(name => caches.delete(name)));
+                console.log('✅ Cache limpo:', cacheNames.length, 'caches removidos');
+            }
+            return true;
+        }
+
+        async function clearServiceWorkers() {
+            console.log('2️⃣ Removendo service workers...');
+            if ('serviceWorker' in navigator) {
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                await Promise.all(registrations.map(reg => reg.unregister()));
+                console.log('✅ Service workers removidos:', registrations.length);
+            }
+            return true;
+        }
+
+        async function clearStorage() {
+            console.log('3️⃣ Limpando storage...');
+            try {
+                localStorage.clear();
+                sessionStorage.clear();
+                if ('indexedDB' in window) {
+                    const dbs = await indexedDB.databases();
+                    dbs.forEach(db => db.name && indexedDB.deleteDatabase(db.name));
+                }
+                console.log('✅ Storage limpo');
+            } catch (e) {
+                console.log('⚠️ Erro ao limpar storage:', e);
+            }
+            return true;
+        }
+
+        function prepareRedirect() {
+            console.log('4️⃣ Preparando redirecionamento...');
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    console.log('✅ Pronto para redirecionar');
+                    resolve(true);
+                }, 500);
+            });
+        }
+
+        async function runStep(index) {
+            if (index >= steps.length) {
+                console.log('🎉 Limpeza concluída!');
+                document.getElementById('btnAcessar').style.display = 'block';
+                return;
+            }
+
+            const step = steps[index];
+            try {
+                await step.action();
+                
+                // Marcar como concluído
+                document.getElementById(step.icon).className = 'icon success';
+                document.getElementById(step.text).style.fontWeight = '600';
+                
+                // Próximo passo após 300ms
+                setTimeout(() => runStep(index + 1), 300);
+            } catch (e) {
+                console.error('❌ Erro no passo', index + 1, ':', e);
+                // Continuar mesmo com erro
+                document.getElementById(step.icon).className = 'icon success';
+                setTimeout(() => runStep(index + 1), 300);
+            }
+        }
+
+        // Iniciar processo
+        setTimeout(() => runStep(0), 500);
+
+        // Botão de acesso
+        document.getElementById('btnAcessar').addEventListener('click', function() {
+            console.log('🚀 Redirecionando para PABE...');
+            // Adicionar timestamp para forçar reload
+            window.location.href = '/?t=' + Date.now();
+        });
+    </script>
+</body>
+</html>

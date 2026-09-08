@@ -1,0 +1,25 @@
+{
+  "name": "PABE - Posto Avançado de Boa Esperança",
+  "short_name": "PABE",
+  "version": "2.1.0",
+  "description": "Sistema de gestão do Posto Avançado de Boa Esperança - Corpo de Bombeiros Militar de Minas Gerais",
+  "start_url": "/?v=2.1.0",
+  "display": "standalone",
+  "background_color": "#dc2626",
+  "theme_color": "#dc2626",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-ai.onspace.ai/onspace/project/image/hzq4xJpispioZWNW5Tvd8J/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-ai.onspace.ai/onspace/project/image/S8uryzFeEHCSjf5uxRNJKS/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

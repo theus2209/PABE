@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="UTF-8">
+  <meta name="ProgId" content="Word.Document">
+  <meta name="Generator" content="Microsoft Word">
+  <title>PABE - Descrição do Sistema</title>
+  <style>
+    @page {
+      margin: 2.5cm 3cm 2.5cm 3cm;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      font-size: 12pt;
+      color: #000000;
+      line-height: 1.5;
+      margin: 0;
+      padding: 40px 60px;
+    }
+    h1 {
+      font-size: 22pt;
+      font-weight: bold;
+      color: #C0392B;
+      text-align: center;
+      border-bottom: 3px solid #C0392B;
+      padding-bottom: 10px;
+      margin-bottom: 6px;
+    }
+    h2 {
+      font-size: 16pt;
+      font-weight: bold;
+      color: #C0392B;
+      margin-top: 24px;
+      margin-bottom: 8px;
+      border-left: 5px solid #C0392B;
+      padding-left: 10px;
+    }
+    h3 {
+      font-size: 13pt;
+      font-weight: bold;
+      color: #922B21;
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
+    p {
+      font-size: 12pt;
+      margin-bottom: 8px;
+      text-align: justify;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 13pt;
+      color: #555;
+      margin-bottom: 4px;
+    }
+    .date {
+      text-align: center;
+      font-size: 11pt;
+      color: #888;
+      margin-bottom: 30px;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+    ul {
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+    ul li {
+      margin-bottom: 5px;
+      font-size: 12pt;
+    }
+    .module-box {
+      border: 1px solid #C0392B;
+      border-radius: 4px;
+      padding: 10px 16px;
+      margin-bottom: 14px;
+      background-color: #FFF5F5;
+      page-break-inside: avoid;
+    }
+    .module-title {
+      font-weight: bold;
+      font-size: 13pt;
+      color: #C0392B;
+      margin-bottom: 6px;
+    }
+    .badge {
+      display: inline-block;
+      background-color: #C0392B;
+      color: white;
+      font-size: 10pt;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-right: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 11pt;
+    }
+    th {
+      background-color: #C0392B;
+      color: white;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: bold;
+    }
+    td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #ddd;
+      vertical-align: top;
+    }
+    tr:nth-child(even) td {
+      background-color: #FFF5F5;
+    }
+    .cover {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .logo-placeholder {
+      width: 100px;
+      height: 100px;
+      background-color: #C0392B;
+      border-radius: 50%;
+      margin: 0 auto 16px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 40pt;
+      font-weight: bold;
+    }
+    .info-table {
+      width: 60%;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    .info-table td {
+      padding: 5px 10px;
+      border: none;
+    }
+    .info-label {
+      font-weight: bold;
+      color: #555;
+      text-align: right;
+      width: 40%;
+    }
+    .info-value {
+      color: #000;
+    }
+    @media print {
+      .module-box { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CAPA -->
+  <div class="cover">
+    <div class="logo-placeholder">🔥</div>
+    <h1>PABE</h1>
+    <p class="subtitle">Plataforma de Apoio ao Bombeiro Especializado</p>
+    <p class="date">Sistema de Gestão Operacional – Corpo de Bombeiros Militar</p>
+    <hr class="divider">
+    <table class="info-table">
+      <tr>
+        <td class="info-label">Versão:</td>
+        <td class="info-value">4.1.0</td>
+      </tr>
+      <tr>
+        <td class="info-label">Data:</td>
+        <td class="info-value">Maio de 2026</td>
+      </tr>
+      <tr>
+        <td class="info-label">Plataforma:</td>
+        <td class="info-value">Web (React + Supabase)</td>
+      </tr>
+      <tr>
+        <td class="info-label">Acesso:</td>
+        <td class="info-value">https://pabe-cbmmg.onspace.build</td>
+      </tr>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SUMÁRIO -->
+  <h2>Sumário</h2>
+  <ul>
+    <li>1. Visão Geral do Sistema</li>
+    <li>2. Objetivos</li>
+    <li>3. Acesso e Autenticação</li>
+    <li>4. Módulos do Sistema</li>
+    <li>&nbsp;&nbsp;&nbsp;4.1 Mapa de Carga</li>
+    <li>&nbsp;&nbsp;&nbsp;4.2 Escala de Serviço</li>
+    <li>&nbsp;&nbsp;&nbsp;4.3 Carga Horária</li>
+    <li>&nbsp;&nbsp;&nbsp;4.4 Cautelas</li>
+    <li>&nbsp;&nbsp;&nbsp;4.5 Hidrantes</li>
+    <li>&nbsp;&nbsp;&nbsp;4.6 Zona Rural</li>
+    <li>&nbsp;&nbsp;&nbsp;4.7 Contatos Úteis</li>
+    <li>&nbsp;&nbsp;&nbsp;4.8 Bombeiros</li>
+    <li>&nbsp;&nbsp;&nbsp;4.9 SAMU</li>
+    <li>&nbsp;&nbsp;&nbsp;4.10 Gestão de Frota</li>
+    <li>&nbsp;&nbsp;&nbsp;4.11 Alterações</li>
+    <li>&nbsp;&nbsp;&nbsp;4.12 Sobreaviso</li>
+    <li>&nbsp;&nbsp;&nbsp;4.13 Anúncios</li>
+    <li>&nbsp;&nbsp;&nbsp;4.14 Notificações Telegram</li>
+    <li>5. Tecnologias Utilizadas</li>
+    <li>6. Controle de Acesso</li>
+    <li>7. Integrações</li>
+  </ul>
+
+  <hr class="divider">
+
+  <!-- 1. VISÃO GERAL -->
+  <h2>1. Visão Geral do Sistema</h2>
+  <p>
+    O <strong>PABE (Plataforma de Apoio ao Bombeiro Especializado)</strong> é um sistema de gestão operacional desenvolvido para o Corpo de Bombeiros Militar, disponível nas versões mobile (aplicativo) e web. O sistema centraliza as principais informações operacionais da unidade, permitindo que os militares acessem e gerenciem dados em tempo real, de qualquer dispositivo.
+  </p>
+  <p>
+    A plataforma foi desenvolvida utilizando tecnologias modernas de desenvolvimento web e mobile, compartilhando um único banco de dados entre as duas versões, garantindo consistência e sincronização imediata das informações para todos os usuários.
+  </p>
+
+  <hr class="divider">
+
+  <!-- 2. OBJETIVOS -->
+  <h2>2. Objetivos</h2>
+  <ul>
+    <li>Digitalizar e centralizar o controle operacional da unidade;</li>
+    <li>Garantir rastreabilidade de materiais, viaturas e equipamentos;</li>
+    <li>Facilitar a comunicação entre militares em serviço;</li>
+    <li>Disponibilizar informações críticas (hidrantes, contatos, escalas) de forma rápida;</li>
+    <li>Notificar automaticamente os militares sobre alterações via Telegram;</li>
+    <li>Integrar as versões mobile e web em um único backend compartilhado.</li>
+  </ul>
+
+  <hr class="divider">
+
+  <!-- 3. ACESSO E AUTENTICAÇÃO -->
+  <h2>3. Acesso e Autenticação</h2>
+  <p>O acesso ao PABE é controlado por um sistema de autenticação com as seguintes características:</p>
+
+  <h3>3.1 Cadastro de Novo Usuário</h3>
+  <ul>
+    <li>Preenchimento de dados: graduação, nome de guerra, número BM, CPF e senha;</li>
+    <li>Verificação de e-mail via código OTP (6 dígitos);</li>
+    <li><strong>Aprovação obrigatória por administrador</strong> antes do primeiro acesso;</li>
+    <li>Notificação automática ao administrador sobre novo cadastro pendente;</li>
+    <li>E-mail de confirmação enviado ao usuário após aprovação.</li>
+  </ul>
+
+  <h3>3.2 Login</h3>
+  <ul>
+    <li>Autenticação via e-mail e senha;</li>
+    <li>Recuperação de senha por e-mail com link de redefinição;</li>
+    <li>Sessão persistente entre acessos.</li>
+  </ul>
+
+  <h3>3.3 Níveis de Acesso</h3>
+  <table>
+    <tr>
+      <th>Perfil</th>
+      <th>Permissões</th>
+    </tr>
+    <tr>
+      <td><strong>Administrador</strong></td>
+      <td>Aprovação de usuários, acesso total a todos os módulos, gerenciamento de dados</td>
+    </tr>
+    <tr>
+      <td><strong>Militar</strong></td>
+      <td>Acesso a todos os módulos operacionais, edição de dados conforme módulo</td>
+    </tr>
+  </table>
+
+  <hr class="divider">
+
+  <!-- 4. MÓDULOS -->
+  <h2>4. Módulos do Sistema</h2>
+
+  <!-- 4.1 MAPA DE CARGA -->
+  <div class="module-box">
+    <div class="module-title">4.1 Mapa de Carga</div>
+    <p>Módulo central para controle de materiais das viaturas da unidade.</p>
+    <p><strong>Funcionalidades:</strong></p>
+    <ul>
+      <li>Cadastro e gerenciamento de viaturas (SAO, ASL, VOB, TPO e outras);</li>
+      <li>Controle de materiais por viatura, organizados por categorias (prateleiras, boxes, cabine, etc.);</li>
+      <li>Adição de materiais diretamente em cada categoria com um clique;</li>
+      <li>Edição de quantidade de materiais com registro de destino;</li>
+      <li>Exclusão de materiais com informação do destino do item removido;</li>
+      <li>Reordenação de materiais e categorias (drag and drop / setas);</li>
+      <li>Exclusão de categorias inteiras com todos os materiais;</li>
+      <li>Botão "Materiais Recebidos" para confirmar o recebimento do turno;</li>
+      <li>Renomeação de viaturas;</li>
+      <li>Exclusão de viaturas com todos os materiais associados;</li>
+      <li><strong>Notificação automática via Telegram</strong> em toda adição, edição ou exclusão de material.</li>
+    </ul>
+    <p><strong>Categorias padrão SAO:</strong> Prateleira 01 a 05, Caixa de Ferramentas, Parte Suspensa, Material de Sapa.</p>
+    <p><strong>Categorias padrão demais viaturas:</strong> Cabine, Box Lado Direito, Box Traseiro, Box Lado Esquerdo, Box Superior, Parte Superior, Caixa de Ferramentas.</p>
+  </div>
+
+  <!-- 4.2 ESCALA -->
+  <div class="module-box">
+    <div class="module-title">4.2 Escala de Serviço</div>
+    <p>Gerenciamento da escala mensal de militares da unidade.</p>
+    <ul>
+      <li>Criação de escalas por mês de referência;</li>
+      <li>Organização por ALAs (grupos de serviço);</li>
+      <li>Adição, edição e exclusão de militares escalados;</li>
+      <li>Definição de categorias e observações por militar;</li>
+      <li>Reordenação dos militares dentro de cada ala;</li>
+      <li>Visualização clara e organizada por grupos de serviço.</li>
+    </ul>
+  </div>
+
+  <!-- 4.3 CARGA HORÁRIA -->
+  <div class="module-box">
+    <div class="module-title">4.3 Carga Horária</div>
+    <ul>
+      <li>Acesso direto à planilha de carga horária da unidade via Google Sheets;</li>
+      <li>Abertura em nova aba para visualização completa;</li>
+      <li>Link direto ao documento oficial da unidade.</li>
+    </ul>
+  </div>
+
+  <!-- 4.4 CAUTELAS -->
+  <div class="module-box">
+    <div class="module-title">4.4 Cautelas</div>
+    <p>Controle de empréstimo e devolução de materiais e equipamentos.</p>
+    <ul>
+      <li>Registro de cautela com: material, data, militar solicitante;</li>
+      <li>Registro de devolução com: data de devolução e militar que recebeu;</li>
+      <li>Listagem separada de cautelas abertas (pendentes) e encerradas (devolvidas);</li>
+      <li>Exclusão de registros de cautela;</li>
+      <li>Indicação visual do status (pendente / devolvido).</li>
+    </ul>
+  </div>
+
+  <!-- 4.5 HIDRANTES -->
+  <div class="module-box">
+    <div class="module-title">4.5 Hidrantes</div>
+    <p>Mapeamento e controle de hidrantes da área de cobertura da unidade.</p>
+    <ul>
+      <li>Cadastro de hidrantes com: descrição, endereço, cidade, latitude e longitude;</li>
+      <li>Visualização dos hidrantes em lista organizada por cidade;</li>
+      <li>Botão de localização que abre o Google Maps diretamente no ponto do hidrante;</li>
+      <li>Edição e exclusão de hidrantes;</li>
+      <li>Reordenação dos hidrantes;</li>
+      <li>Filtro por cidade para facilitar a busca.</li>
+    </ul>
+  </div>
+
+  <!-- 4.6 ZONA RURAL -->
+  <div class="module-box">
+    <div class="module-title">4.6 Zona Rural</div>
+    <p>Mapeamento de pontos de referência em áreas rurais da região de cobertura.</p>
+    <ul>
+      <li>Organização por cidade/município;</li>
+      <li>Cadastro de pontos com: descrição, latitude e longitude;</li>
+      <li>Botão de localização integrado ao Google Maps;</li>
+      <li>Adição, edição e exclusão de cidades e pontos;</li>
+      <li>Navegação em dois níveis: lista de cidades → pontos da cidade.</li>
+    </ul>
+  </div>
+
+  <!-- 4.7 CONTATOS ÚTEIS -->
+  <div class="module-box">
+    <div class="module-title">4.7 Contatos Úteis</div>
+    <p>Agenda de contatos operacionais organizados por categoria.</p>
+    <ul>
+      <li>Organização em categorias personalizáveis;</li>
+      <li>Cadastro de contatos com: nome e telefone;</li>
+      <li>Botão de discagem direta (tel:) para cada contato;</li>
+      <li>Adição, edição e exclusão de categorias e contatos;</li>
+      <li>Reordenação de categorias.</li>
+    </ul>
+  </div>
+
+  <!-- 4.8 BOMBEIROS -->
+  <div class="module-box">
+    <div class="module-title">4.8 Bombeiros</div>
+    <p>Diretório de contatos dos militares da unidade de bombeiros.</p>
+    <ul>
+      <li>Cadastro com: posto/graduação, nome de guerra e telefone;</li>
+      <li>Discagem direta integrada;</li>
+      <li>Reordenação da lista;</li>
+      <li>Edição e exclusão de registros.</li>
+    </ul>
+  </div>
+
+  <!-- 4.9 SAMU -->
+  <div class="module-box">
+    <div class="module-title">4.9 SAMU</div>
+    <p>Diretório de contatos da equipe SAMU integrada à unidade.</p>
+    <ul>
+      <li>Cadastro com: função, nome de guerra e telefone;</li>
+      <li>Discagem direta integrada;</li>
+      <li>Reordenação da lista;</li>
+      <li>Edição e exclusão de registros.</li>
+    </ul>
+  </div>
+
+  <!-- 4.10 GESTÃO DE FROTA -->
+  <div class="module-box">
+    <div class="module-title">4.10 Gestão de Frota</div>
+    <p>Controle de manutenção e histórico das viaturas da frota.</p>
+    <ul>
+      <li>Cadastro de viaturas da frota com nome identificador;</li>
+      <li>Registro de manutenções com: tipo de serviço, KM atual, data e local;</li>
+      <li>Histórico completo de manutenções por viatura;</li>
+      <li>Edição e exclusão de registros;</li>
+      <li>Reordenação das viaturas.</li>
+    </ul>
+  </div>
+
+  <!-- 4.11 ALTERAÇÕES -->
+  <div class="module-box">
+    <div class="module-title">4.11 Alterações</div>
+    <p>Registro e controle de alterações e ocorrências da unidade.</p>
+    <ul>
+      <li>Registro de alterações detectadas com: descrição, data e militar que identificou;</li>
+      <li>Marcação de resolução com: data de resolução e militar que confirmou;</li>
+      <li>Separação visual entre alterações abertas e resolvidas;</li>
+      <li>Exclusão de registros;</li>
+      <li>Histórico completo das alterações da unidade.</li>
+    </ul>
+  </div>
+
+  <!-- 4.12 SOBREAVISO -->
+  <div class="module-box">
+    <div class="module-title">4.12 Sobreaviso</div>
+    <p>Gerenciamento de documentos do sobreaviso da unidade.</p>
+    <ul>
+      <li>Upload de documentos PDF por mês de referência;</li>
+      <li>Armazenamento seguro em bucket dedicado (Supabase Storage);</li>
+      <li>Visualização e download de documentos;</li>
+      <li>Organização por mês;</li>
+      <li>Exclusão de documentos.</li>
+    </ul>
+  </div>
+
+  <!-- 4.13 ANÚNCIOS -->
+  <div class="module-box">
+    <div class="module-title">4.13 Anúncios</div>
+    <p>Mural de avisos e comunicados da unidade.</p>
+    <ul>
+      <li>Publicação de anúncios com título e URL de referência;</li>
+      <li>Acesso direto ao link do anúncio;</li>
+      <li>Listagem dos anúncios mais recentes;</li>
+      <li>Exclusão de anúncios.</li>
+    </ul>
+  </div>
+
+  <!-- 4.14 NOTIFICAÇÕES TELEGRAM -->
+  <div class="module-box">
+    <div class="module-title">4.14 Notificações via Telegram</div>
+    <p>Sistema de notificações automáticas integrado ao Telegram.</p>
+    <ul>
+      <li>Envio de notificações em tempo real para todos os militares cadastrados;</li>
+      <li>Ativado automaticamente nas operações: adição, edição e exclusão de materiais; recebimento de materiais; aprovação de usuários; e atualização do mapa de carga;</li>
+      <li>Cadastro de dispositivos via bot do Telegram;</li>
+      <li>Diagnóstico de dispositivos cadastrados e ativos;</li>
+      <li>Teste manual de envio de notificações;</li>
+      <li>Mensagens formatadas com informações detalhadas (viatura, material, categoria, militar, data/hora);</li>
+      <li>Gerenciamento de dispositivos (ativar/desativar/excluir).</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 5. TECNOLOGIAS -->
+  <h2>5. Tecnologias Utilizadas</h2>
+  <table>
+    <tr>
+      <th>Componente</th>
+      <th>Tecnologia</th>
+    </tr>
+    <tr>
+      <td>Frontend Web</td>
+      <td>React 18 + TypeScript + Vite</td>
+    </tr>
+    <tr>
+      <td>Estilização</td>
+      <td>Tailwind CSS + shadcn/ui</td>
+    </tr>
+    <tr>
+      <td>Backend / Banco de Dados</td>
+      <td>Supabase (PostgreSQL)</td>
+    </tr>
+    <tr>
+      <td>Autenticação</td>
+      <td>Supabase Auth (OTP + Senha)</td>
+    </tr>
+    <tr>
+      <td>Armazenamento de Arquivos</td>
+      <td>Supabase Storage</td>
+    </tr>
+    <tr>
+      <td>Funções Serverless</td>
+      <td>Supabase Edge Functions (Deno)</td>
+    </tr>
+    <tr>
+      <td>Notificações</td>
+      <td>Telegram Bot API</td>
+    </tr>
+    <tr>
+      <td>E-mail Transacional</td>
+      <td>Resend API</td>
+    </tr>
+    <tr>
+      <td>App Mobile</td>
+      <td>React Native (Expo)</td>
+    </tr>
+    <tr>
+      <td>Hospedagem Web</td>
+      <td>OnSpace Cloud</td>
+    </tr>
+  </table>
+
+  <hr class="divider">
+
+  <!-- 6. CONTROLE DE ACESSO -->
+  <h2>6. Controle de Acesso (RLS)</h2>
+  <p>
+    O sistema utiliza <strong>Row Level Security (RLS)</strong> do PostgreSQL para garantir que cada usuário acesse apenas os dados autorizados. As políticas de segurança são configuradas por tabela e por operação (SELECT, INSERT, UPDATE, DELETE).
+  </p>
+  <ul>
+    <li>Dados pessoais: acesso restrito ao próprio usuário;</li>
+    <li>Dados operacionais (materiais, hidrantes, escalas, etc.): acesso de leitura para todos os usuários autenticados;</li>
+    <li>Aprovação de usuários: restrita a administradores;</li>
+    <li>Token do bot Telegram: acesso restrito ao service role.</li>
+  </ul>
+
+  <hr class="divider">
+
+  <!-- 7. INTEGRAÇÕES -->
+  <h2>7. Integrações</h2>
+
+  <h3>7.1 Telegram Bot</h3>
+  <p>O sistema possui integração nativa com o Telegram para envio de notificações automáticas. O bot é configurado via painel administrativo e os usuários se cadastram enviando /start no bot oficial da unidade.</p>
+
+  <h3>7.2 Google Maps</h3>
+  <p>Os módulos de Hidrantes e Zona Rural possuem integração com o Google Maps, permitindo abrir diretamente a localização de qualquer ponto cadastrado no aplicativo de mapas do dispositivo.</p>
+
+  <h3>7.3 Google Sheets</h3>
+  <p>O módulo de Carga Horária acessa diretamente uma planilha Google Sheets da unidade, com link configurado para o documento oficial.</p>
+
+  <h3>7.4 Resend (E-mail)</h3>
+  <p>Integração com a plataforma Resend para envio de e-mails transacionais, incluindo: e-mail de aprovação de cadastro e notificações ao administrador sobre novos usuários.</p>
+
+  <hr class="divider">
+
+  <p style="text-align:center; color:#888; font-size:10pt; margin-top:30px;">
+    PABE – Plataforma de Apoio ao Bombeiro Especializado &nbsp;|&nbsp; Versão 4.1.0 &nbsp;|&nbsp; Maio/2026<br>
+    Documento gerado automaticamente pelo sistema.
+  </p>
+
+</body>
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="UTF-8">
+  <meta name="ProgId" content="Word.Document">
+  <meta name="Generator" content="Microsoft Word">
+  <title>PABE - Importância e Funções do Sistema</title>
+  <style>
+    @page {
+      margin: 2.5cm 3cm 2.5cm 3cm;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      font-size: 12pt;
+      color: #1a1a1a;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 60px;
+      background: #fff;
+    }
+
+    /* CAPA */
+    .cover {
+      text-align: center;
+      padding: 60px 0 40px;
+      border-bottom: 3px solid #C0392B;
+      margin-bottom: 40px;
+    }
+    .cover-icon {
+      font-size: 72pt;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .cover h1 {
+      font-size: 36pt;
+      font-weight: bold;
+      color: #C0392B;
+      margin: 0 0 6px;
+      letter-spacing: 4px;
+    }
+    .cover .tagline {
+      font-size: 14pt;
+      color: #555;
+      margin: 0 0 4px;
+      font-style: italic;
+    }
+    .cover .sub {
+      font-size: 12pt;
+      color: #888;
+      margin: 0 0 30px;
+    }
+    .cover-badge {
+      display: inline-block;
+      background: #C0392B;
+      color: #fff;
+      font-size: 10pt;
+      font-weight: bold;
+      padding: 5px 18px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+    }
+
+    /* SEÇÕES */
+    h2 {
+      font-size: 17pt;
+      font-weight: bold;
+      color: #C0392B;
+      margin-top: 36px;
+      margin-bottom: 10px;
+      border-left: 6px solid #C0392B;
+      padding-left: 12px;
+    }
+    h3 {
+      font-size: 13pt;
+      font-weight: bold;
+      color: #7B241C;
+      margin-top: 20px;
+      margin-bottom: 6px;
+    }
+    p {
+      font-size: 12pt;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+    .lead {
+      font-size: 13pt;
+      color: #333;
+      font-style: italic;
+      border-left: 3px solid #C0392B;
+      padding: 10px 18px;
+      background: #FFF5F5;
+      margin-bottom: 20px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* DESTAQUES */
+    .highlight-box {
+      background: linear-gradient(135deg, #C0392B 0%, #922B21 100%);
+      color: #fff;
+      border-radius: 6px;
+      padding: 20px 28px;
+      margin: 24px 0;
+      page-break-inside: avoid;
+    }
+    .highlight-box h3 {
+      color: #fff;
+      font-size: 14pt;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    .highlight-box p {
+      color: rgba(255,255,255,0.93);
+      margin-bottom: 0;
+      font-size: 12pt;
+    }
+
+    /* CARDS DE MÓDULO */
+    .module-grid {
+      margin: 16px 0 24px;
+    }
+    .module-card {
+      border: 1px solid #e0e0e0;
+      border-left: 5px solid #C0392B;
+      border-radius: 0 6px 6px 0;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+      background: #FDFAFA;
+      page-break-inside: avoid;
+    }
+    .module-card-title {
+      font-weight: bold;
+      font-size: 12pt;
+      color: #C0392B;
+      margin-bottom: 5px;
+    }
+    .module-card p {
+      font-size: 11pt;
+      margin-bottom: 0;
+      color: #333;
+    }
+
+    /* LISTA DE BENEFÍCIOS */
+    ul.benefit-list {
+      list-style: none;
+      margin: 0 0 16px;
+      padding: 0;
+    }
+    ul.benefit-list li {
+      padding: 7px 0 7px 28px;
+      position: relative;
+      border-bottom: 1px solid #f0e8e8;
+      font-size: 12pt;
+    }
+    ul.benefit-list li:last-child { border-bottom: none; }
+    ul.benefit-list li::before {
+      content: "✔";
+      color: #C0392B;
+      font-weight: bold;
+      position: absolute;
+      left: 4px;
+    }
+
+    /* TABELA COMPARATIVA */
+    table.compare {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 11pt;
+    }
+    table.compare th {
+      background: #C0392B;
+      color: #fff;
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: bold;
+    }
+    table.compare td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #e8e8e8;
+      vertical-align: top;
+    }
+    table.compare tr:nth-child(even) td { background: #FFF5F5; }
+
+    /* ESTATÍSTICAS */
+    .stats-row {
+      display: flex;
+      gap: 16px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .stat-box {
+      flex: 1;
+      min-width: 120px;
+      background: #C0392B;
+      color: #fff;
+      border-radius: 6px;
+      padding: 18px 14px;
+      text-align: center;
+      page-break-inside: avoid;
+    }
+    .stat-number {
+      font-size: 28pt;
+      font-weight: bold;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 10pt;
+      opacity: 0.9;
+    }
+
+    /* CITAÇÃO */
+    .quote-block {
+      background: #FFF5F5;
+      border: 1px solid #F1948A;
+      border-radius: 6px;
+      padding: 18px 24px;
+      margin: 20px 0;
+      page-break-inside: avoid;
+    }
+    .quote-text {
+      font-size: 13pt;
+      font-style: italic;
+      color: #7B241C;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .quote-source {
+      font-size: 10pt;
+      color: #999;
+      text-align: center;
+    }
+
+    /* DIVISOR */
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 28px 0;
+    }
+
+    /* RODAPÉ */
+    .footer {
+      text-align: center;
+      color: #aaa;
+      font-size: 10pt;
+      margin-top: 36px;
+      padding-top: 16px;
+      border-top: 1px solid #eee;
+    }
+
+    /* IMPRESSÃO */
+    @media print {
+      .highlight-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .stat-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .cover-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      table.compare th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .module-card { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CAPA -->
+  <div class="cover">
+    <div class="cover-icon">🔥</div>
+    <h1>PABE</h1>
+    <p class="tagline">Plataforma de Apoio ao Bombeiro Especializado</p>
+    <p class="sub">Corpo de Bombeiros Militar de Minas Gerais — Posto Avançado de Boa Esperança</p>
+    <span class="cover-badge">Transformando a Gestão Operacional</span>
+  </div>
+
+  <!-- INTRODUÇÃO -->
+  <div class="lead">
+    "Em emergências, cada segundo é decisivo. O PABE foi desenvolvido para garantir que as informações certas estejam nas mãos certas, no momento certo — eliminando retrabalho, falhas de comunicação e perda de tempo operacional."
+  </div>
+
+  <h2>O que é o PABE?</h2>
+  <p>
+    O <strong>PABE (Plataforma de Apoio ao Bombeiro Especializado)</strong> é um sistema digital de gestão operacional desenvolvido exclusivamente para o Corpo de Bombeiros Militar, unindo em uma única plataforma todas as informações críticas do dia a dia da guarnição. Disponível para <strong>smartphones (iOS e Android)</strong> e em versão <strong>web acessível de qualquer navegador</strong>, o PABE conecta os militares ao banco de dados em tempo real, de onde quer que estejam.
+  </p>
+  <p>
+    Criado para substituir processos manuais, planilhas desatualizadas e comunicações fragmentadas por grupos de mensagens, o PABE representa a modernização da gestão operacional da unidade, com foco em <strong>agilidade, rastreabilidade e confiabilidade</strong>.
+  </p>
+
+  <!-- DESTAQUE: Por que o PABE existe -->
+  <div class="highlight-box">
+    <h3>Por que o PABE foi criado?</h3>
+    <p>
+      Antes do PABE, o controle de materiais, escalas e contatos era realizado em papéis físicos, planilhas desatualizadas e grupos de WhatsApp. Isso gerava informações duplicadas, perda de dados, falta de rastreabilidade e dificuldade de acesso em campo. O PABE surgiu para resolver esses problemas com tecnologia moderna, segura e acessível a toda a guarnição.
+    </p>
+  </div>
+
+  <hr>
+
+  <!-- IMPORTÂNCIA OPERACIONAL -->
+  <h2>Por que o PABE é Essencial?</h2>
+
+  <h3>1. Centralização da Informação</h3>
+  <p>
+    Antes do PABE, as informações operacionais da unidade estavam dispersas em diferentes locais: papéis físicos, planilhas individuais, grupos de mensagens e memória dos militares mais experientes. Com o PABE, todas as informações estão em um único lugar, atualizadas em tempo real, acessíveis por qualquer militar autorizado a qualquer momento.
+  </p>
+
+  <h3>2. Rastreabilidade e Responsabilidade</h3>
+  <p>
+    Cada ação realizada no sistema — adição, edição ou remoção de material — é registrada com o nome do militar responsável, data e hora. Isso garante total <strong>rastreabilidade das operações</strong> e fortalece a cultura de responsabilidade dentro da guarnição.
+  </p>
+
+  <h3>3. Comunicação Instantânea via Telegram</h3>
+  <p>
+    Toda movimentação relevante no sistema gera uma <strong>notificação automática enviada via Telegram</strong> para todos os militares cadastrados. Não é necessário nenhuma ação adicional: o sistema notifica automaticamente toda a guarnição sobre alterações no mapa de carga, recebimento de materiais, aprovação de novos usuários e muito mais.
+  </p>
+
+  <h3>4. Disponibilidade 24 horas, 7 dias por semana</h3>
+  <p>
+    O PABE está disponível o tempo todo — durante o plantão, em situações de emergência, antes e depois do serviço. Tanto a versão mobile quanto a versão web estão acessíveis a qualquer hora, de qualquer lugar com acesso à internet.
+  </p>
+
+  <h3>5. Segurança e Controle de Acesso</h3>
+  <p>
+    O acesso ao PABE é restrito a militares aprovados. O sistema exige cadastro com dados militares, verificação de e-mail e <strong>aprovação obrigatória por administrador</strong> antes do primeiro acesso. Isso garante que apenas pessoas autorizadas tenham acesso às informações operacionais da unidade.
+  </p>
+
+  <hr>
+
+  <!-- ESTATÍSTICAS -->
+  <h2>O PABE em Números</h2>
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-number">14</div>
+      <div class="stat-label">Módulos Operacionais</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">2</div>
+      <div class="stat-label">Plataformas (Mobile + Web)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">1</div>
+      <div class="stat-label">Banco de Dados Unificado</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">24h</div>
+      <div class="stat-label">Disponibilidade Contínua</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Notificações Automáticas</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- MÓDULOS -->
+  <h2>Principais Funções do PABE</h2>
+  <p>O sistema é organizado em módulos temáticos, cada um projetado para resolver um desafio específico da rotina operacional:</p>
+
+  <div class="module-grid">
+
+    <div class="module-card">
+      <div class="module-card-title">🚛 Mapa de Carga</div>
+      <p>Controle completo dos materiais de cada viatura, organizados por categorias (prateleiras, boxes, cabine, etc.). Qualquer movimentação — adição, edição ou remoção — é registrada e notificada automaticamente a toda a guarnição via Telegram, com nome do responsável, quantidade e destino do material.</p>
+    </div>
+
+    <div class="module-card">
+      <div class="module-card-title">📅 Escala de Serviço</div>
+      <p>Gerenciamento digital da escala mensal de militares, organizada por ALAs de serviço. Permite adicionar, editar, reordenar e visualizar todos os militares escalados de forma clara e sem papel.</p>
+    </div>
+
+    <div class="module-card">
+      <div class="module-card-title">⏱️ Carga Horária</div>
+      <p>Acesso direto e instantâneo à planilha oficial de carga horária da unidade, integrada ao Google Sheets. Sem necessidade de salvar links manualmente ou depender de quem enviou o arquivo.</p>
+    </div>
+
+    <div class="module-card">
+      <div class="module-card-title">📋 Cautelas</div>
+      <p>Controle de empréstimos de materiais e equipamentos. Cada cautela registra o material, a data, o militar solicitante e, na devolução, quem recebeu o material de volta. Elimina o caderno físico de cautelas e garante rastreabilidade total.</p>
+    </div>
+
+    <div class="module-card">
+      <div class="module-card-title">💧 Hidrantes</div>
+      <p>Mapeamento georeferenciado de todos os hidrantes da área de cobertura, com abertura direta no Google Maps. Em situações de emergência, qualquer militar localiza o hidrante mais próximo em segundos, sem depender de quem conhece a região.</p>
+    </div>
+
+    <div class="module-card">
+      <div class="module-card-title">🌿 Zona Rural</div>
+      <p>Cadastro de pontos de referência em áreas rurais com integração ao Google Maps. Fundamental para atendimentos fora da área urbana, onde endereços convencionais muitas vezes não existem.</p>
+    </div>
+
+    <div class="module-card">
+      <div class="module-card-title">📞 Contatos Úteis, Bombeiros e SAMU</div>
+      <p>Agenda centralizada com todos os contatos operacionais — organizados por categoria — com discagem direta pelo smartphone. Elimina a necessidade de agendar contatos individualmente em cada aparelho.</p>
+    </div>
+
+    <div class="module-card">
+      <div class="module-card-title">🚗 Gestão de Frota</div>
+      <p>Registro histórico de manutenções de todas as viaturas da frota: tipo de serviço, quilometragem, data e local. Permite acompanhar o histórico de cada viatura e antecipar necessidades de manutenção preventiva.</p>
+    </div>
+
+    <div class="module-card">
+      <div class="module-card-title">⚠️ Alterações</div>
+      <p>Registro formal de alterações e ocorrências da unidade, com controle de abertura e resolução. Cada registro identifica o militar que detectou o problema e o que confirmou a resolução.</p>
+    </div>
+
+    <div class="module-card">
+      <div class="module-card-title">📄 Sobreaviso</div>
+      <p>Repositório digital de documentos do sobreaviso, organizados por mês de referência. Qualquer militar pode acessar e baixar o documento oficial sem precisar solicitar o arquivo.</p>
+    </div>
+
+    <div class="module-card">
+      <div class="module-card-title">📢 Anúncios</div>
+      <p>Mural digital de avisos e comunicados da unidade. Informações importantes ficam visíveis a todos os militares assim que publicadas, sem se perder no histórico de grupos de mensagens.</p>
+    </div>
+
+    <div class="module-card">
+      <div class="module-card-title">🤖 Notificações via Telegram</div>
+      <p>Sistema de notificações automáticas integrado ao Telegram. Toda ação relevante no sistema gera uma mensagem detalhada enviada instantaneamente para todos os militares cadastrados — sem necessidade de verificar o app manualmente.</p>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <!-- COMPARATIVO ANTES X DEPOIS -->
+  <h2>Antes e Depois do PABE</h2>
+  <table class="compare">
+    <thead>
+      <tr>
+        <th style="width:50%">Sem o PABE</th>
+        <th style="width:50%">Com o PABE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Controle de materiais em papéis físicos sujeitos a perda e rasura</td>
+        <td>Mapa de carga digital, atualizado em tempo real por qualquer militar</td>
+      </tr>
+      <tr>
+        <td>Escala divulgada em grupos de WhatsApp com versões conflitantes</td>
+        <td>Escala única e centralizada, sempre atualizada no sistema</td>
+      </tr>
+      <tr>
+        <td>Contatos salvos individualmente em cada celular — risco de perda</td>
+        <td>Agenda operacional unificada, acessível por todos os militares</td>
+      </tr>
+      <tr>
+        <td>Localização de hidrantes dependente de conhecimento individual</td>
+        <td>Hidrantes georeferenciados com abertura direta no Google Maps</td>
+      </tr>
+      <tr>
+        <td>Nenhum registro de quem alterou, adicionou ou removeu material</td>
+        <td>Cada ação registrada com nome, data e hora do responsável</td>
+      </tr>
+      <tr>
+        <td>Informações sobre emergências comunicadas por mensagens manuais</td>
+        <td>Notificações automáticas via Telegram para toda a guarnição</td>
+      </tr>
+      <tr>
+        <td>Documentos do sobreaviso enviados por grupos — difícil de localizar</td>
+        <td>Repositório digital organizado por mês, sempre disponível</td>
+      </tr>
+      <tr>
+        <td>Cadastro de novos militares sem controle ou aprovação</td>
+        <td>Aprovação obrigatória pelo administrador antes do primeiro acesso</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <!-- BENEFÍCIOS -->
+  <h2>Benefícios para a Guarnição</h2>
+  <ul class="benefit-list">
+    <li>Redução do tempo gasto na busca por informações operacionais durante o serviço</li>
+    <li>Eliminação de registros duplicados e informações desatualizadas</li>
+    <li>Maior responsabilidade individual: cada ação tem autoria registrada</li>
+    <li>Comunicação imediata com toda a guarnição, sem depender de grupos de mensagens</li>
+    <li>Acesso às informações em campo, diretamente pelo smartphone, sem precisar retornar ao quartel</li>
+    <li>Localização ágil de hidrantes e pontos de referência em emergências</li>
+    <li>Controle rigoroso de empréstimo e devolução de materiais e equipamentos</li>
+    <li>Histórico completo de manutenção de todas as viaturas da frota</li>
+    <li>Integração entre versão mobile e web com dados sempre sincronizados</li>
+    <li>Segurança no acesso: apenas militares aprovados acessam o sistema</li>
+    <li>Disponibilidade 24 horas por dia, 7 dias por semana, sem interrupções</li>
+  </ul>
+
+  <hr>
+
+  <!-- CITAÇÃO -->
+  <div class="quote-block">
+    <p class="quote-text">"A eficiência operacional de uma unidade começa pela qualidade da informação disponível. O PABE foi desenvolvido para que nenhum militar precise tomar uma decisão com dados desatualizados ou incompletos."</p>
+    <p class="quote-source">— Princípio norteador do desenvolvimento do PABE</p>
+  </div>
+
+  <hr>
+
+  <!-- INTEGRAÇÃO MOBILE + WEB -->
+  <h2>Plataforma Unificada: Mobile + Web</h2>
+  <p>
+    Uma das grandes vantagens do PABE é a <strong>integração total entre a versão mobile e a versão web</strong>. Ambas compartilham o mesmo banco de dados em tempo real, o que significa:
+  </p>
+  <ul class="benefit-list">
+    <li>Um material adicionado pelo app mobile aparece imediatamente na versão web e vice-versa</li>
+    <li>Qualquer militar pode usar a plataforma de qualquer dispositivo: smartphone, tablet ou computador</li>
+    <li>Não há necessidade de sincronização manual — os dados são sempre os mais recentes</li>
+    <li>A versão web é acessível em computadores do quartel sem instalação de software</li>
+    <li>A versão mobile permite acesso em campo, durante ocorrências, mesmo em deslocamento</li>
+  </ul>
+
+  <hr>
+
+  <!-- SEGURANÇA E CONFIABILIDADE -->
+  <h2>Segurança e Confiabilidade dos Dados</h2>
+  <p>
+    O PABE foi construído sobre uma infraestrutura tecnológica de nível empresarial, garantindo a segurança e a integridade das informações operacionais:
+  </p>
+
+  <h3>Autenticação Robusta</h3>
+  <p>Todo acesso ao sistema exige verificação de identidade via e-mail e senha, com aprovação prévia de administrador. Nenhum usuário externo pode acessar as informações da unidade.</p>
+
+  <h3>Controle de Acesso por Função</h3>
+  <p>O banco de dados utiliza políticas de segurança (Row Level Security) que garantem que cada usuário acesse apenas os dados compatíveis com seu perfil e suas permissões.</p>
+
+  <h3>Infraestrutura em Nuvem</h3>
+  <p>Os dados são armazenados em servidores dedicados com backup automático, eliminando o risco de perda por falha de hardware, furto de dispositivos ou desastres físicos.</p>
+
+  <h3>Histórico de Alterações</h3>
+  <p>Toda modificação de dado relevante (materiais, cautelas, alterações) é registrada com data, hora e identificação do militar responsável, criando uma trilha de auditoria completa.</p>
+
+  <hr>
+
+  <!-- CONCLUSÃO -->
+  <h2>Conclusão</h2>
+
+  <div class="highlight-box">
+    <h3>O PABE não é apenas um aplicativo — é uma mudança de cultura operacional.</h3>
+    <p>
+      Ao digitalizar e centralizar as informações da unidade, o PABE transforma a forma como os militares se preparam, se comunicam e respondem às demandas do serviço. Com o PABE, a guarnição opera com mais agilidade, mais responsabilidade e mais segurança — características fundamentais em uma organização cuja missão é salvar vidas.
+    </p>
+  </div>
+
+  <p>
+    A adoção plena do PABE por todos os militares da unidade é o passo seguinte para consolidar os benefícios do sistema. Quanto mais usuários ativos, mais rico, atualizado e confiável se torna o banco de dados compartilhado — e maior o impacto positivo na operação diária do Posto Avançado de Boa Esperança.
+  </p>
+
+  <hr>
+
+  <!-- INFORMAÇÕES TÉCNICAS -->
+  <h2>Acesso ao Sistema</h2>
+  <table class="compare">
+    <tbody>
+      <tr>
+        <td style="width:30%;font-weight:bold;color:#C0392B;">Versão Web</td>
+        <td>https://pabe-cbmmg.onspace.build</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold;color:#C0392B;">Versão Mobile</td>
+        <td>Disponível para iOS e Android — solicitar link de instalação ao administrador</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold;color:#C0392B;">Suporte</td>
+        <td>Administrador do sistema — contato via grupo oficial da guarnição</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold;color:#C0392B;">Cadastro</td>
+        <td>Solicitar aprovação ao administrador após realizar o cadastro com dados militares</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold;color:#C0392B;">Versão atual</td>
+        <td>4.1.0 — Maio de 2026</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    PABE – Plataforma de Apoio ao Bombeiro Especializado &nbsp;|&nbsp; Corpo de Bombeiros Militar de Minas Gerais<br>
+    Posto Avançado de Boa Esperança &nbsp;|&nbsp; Versão 4.1.0 &nbsp;|&nbsp; Maio/2026
+  </div>
+
+</body>
+</html>

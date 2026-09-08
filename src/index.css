@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Fire Red Theme - Bombeiros */
+    --background: 0 65% 50%;
+    --foreground: 0 0% 100%;
+    
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 100%;
+    
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 100%;
+    
+    --primary: 0 84% 60%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+    
+    --accent: 0 84% 60%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 84% 60%;
+    
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-red-600 via-red-600 to-red-700 text-foreground font-sans antialiased;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    
+    /* Desabilitar pull-to-refresh no mobile */
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+  
+  #root {
+    @apply min-h-screen;
+    /* Desabilitar pull-to-refresh */
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+  }
+}
+
+@layer components {
+  .fire-gradient {
+    @apply bg-gradient-to-br from-red-600 via-red-600 to-red-700;
+  }
+  
+  .glass-card {
+    @apply bg-black/60 backdrop-blur-sm border border-white/10 rounded-2xl shadow-2xl;
+  }
+  
+  .module-card {
+    @apply bg-black/80 hover:bg-black/90 transition-all duration-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer border border-white/5 hover:border-white/20 hover:scale-105 hover:shadow-xl;
+  }
+  
+  .btn-primary {
+    @apply bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 hover:shadow-lg active:scale-95;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
