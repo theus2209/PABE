@@ -271,6 +271,11 @@ export function EscalaPage() {
 
   const salvarEInformar = async () => {
     try {
+      // Recarregar dados frescos do banco antes de montar a notificação
+      setIsRefreshing(true);
+      await refetch();
+      setIsRefreshing(false);
+
       if (militares.length === 0) {
         toast.warning('Adicione militares à escala antes de salvar');
         return;
@@ -334,9 +339,13 @@ export function EscalaPage() {
       } else {
         toast.info('Escala salva, mas nenhum dispositivo cadastrado para receber notificação');
       }
+
+      // Recarregar após enviar para garantir sincronização
+      await refetch();
     } catch (error: any) {
       console.error('Erro ao salvar e informar:', error);
       toast.error('Erro ao salvar e informar militares');
+      setIsRefreshing(false);
       // Em caso de erro, manter as alterações pendentes
       setHasUnsavedChanges(true);
     }

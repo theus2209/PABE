@@ -196,7 +196,7 @@ export function useEscala() {
         setMilitares(militaresData);
       }
 
-      toast.success('Militar incluído (não salvo ainda)');
+      toast.success('Militar incluído com sucesso!');
       return true;
     } catch (error: any) {
       console.error('Erro ao adicionar militar:', error);
@@ -217,7 +217,7 @@ export function useEscala() {
       // Atualizar estado local imediatamente
       setMilitares(prev => prev.filter(m => m.id !== militarId));
 
-      toast.success('Militar removido (não salvo ainda)');
+      toast.success('Militar removido com sucesso!');
       return true;
     } catch (error: any) {
       console.error('Erro ao remover militar:', error);
@@ -246,7 +246,7 @@ export function useEscala() {
           : m
       ));
 
-      toast.success('Militar atualizado (não salvo ainda)');
+      toast.success('Militar atualizado com sucesso!');
       return true;
     } catch (error: any) {
       console.error('Erro ao editar militar:', error);
