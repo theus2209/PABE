@@ -468,8 +468,8 @@ export function EscalaPage() {
       {/* Content */}
       <div className="max-w-7xl mx-auto p-6">
         {/* Seletor de Mês */}
-        <div className="flex flex-col gap-3 mb-6">
-          <div className="flex items-center gap-3 flex-wrap">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
             <span className="text-white font-semibold text-lg">Mês de Referência:</span>
             <Select value={mesReferencia} onValueChange={changeMes}>
               <SelectTrigger className="w-[220px] bg-red-600 hover:bg-red-700 text-white border-white/20">
@@ -484,13 +484,28 @@ export function EscalaPage() {
               </SelectContent>
             </Select>
           </div>
-          <Button
+          <button
             onClick={gerarEscalaPDF}
-            className="bg-white text-red-700 hover:bg-red-50 font-semibold gap-2 w-full"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              width: '100%',
+              padding: '12px 16px',
+              background: 'white',
+              color: '#b91c1c',
+              border: 'none',
+              borderRadius: '8px',
+              fontWeight: '600',
+              fontSize: '15px',
+              cursor: 'pointer',
+              boxSizing: 'border-box',
+            }}
           >
-            <FileDown className="h-4 w-4" />
+            <FileDown style={{ width: '18px', height: '18px', flexShrink: 0 }} />
             Clique para ver a escala de {formatarMes(mesReferencia)} em PDF
-          </Button>
+          </button>
         </div>
 
         {/* Alas */}
