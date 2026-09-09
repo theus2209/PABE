@@ -182,8 +182,20 @@ export function useEscala() {
         });
 
       if (error) throw error;
-      
-      await fetchEscala(mesReferencia);
+
+      // Buscar dados atualizados diretamente após a inserção
+      const { data: militaresData, error: fetchError } = await supabase
+        .from('militares_escalados')
+        .select('*')
+        .eq('escala_id', escalaId)
+        .order('ala', { ascending: true })
+        .order('ordem', { ascending: true })
+        .order('created_at', { ascending: true });
+
+      if (!fetchError && militaresData) {
+        setMilitares(militaresData);
+      }
+
       toast.success('Militar incluído (não salvo ainda)');
       return true;
     } catch (error: any) {
@@ -201,8 +213,10 @@ export function useEscala() {
         .eq('id', militarId);
 
       if (error) throw error;
-      
-      await fetchEscala(mesReferencia);
+
+      // Atualizar estado local imediatamente
+      setMilitares(prev => prev.filter(m => m.id !== militarId));
+
       toast.success('Militar removido (não salvo ainda)');
       return true;
     } catch (error: any) {
@@ -224,8 +238,14 @@ export function useEscala() {
         .eq('id', militarId);
 
       if (error) throw error;
-      
-      await fetchEscala(mesReferencia);
+
+      // Atualizar estado local imediatamente
+      setMilitares(prev => prev.map(m =>
+        m.id === militarId
+          ? { ...m, militar_nome: militarNome, categoria: categoria || null, observacao: observacao || null }
+          : m
+      ));
+
       toast.success('Militar atualizado (não salvo ainda)');
       return true;
     } catch (error: any) {
@@ -238,9 +258,18 @@ export function useEscala() {
   const reordenarMilitares = async (ala: number, militaresOrdenados: MilitarEscalado[]) => {
     try {
       console.log('🔄 [REORDENAR] Iniciando reordenação da ala', ala);
-      console.log('🔄 [REORDENAR] Militares:', militaresOrdenados.map((m, i) => `${i}: ${m.militar_nome}`));
-      
-      // Atualizar todos de uma vez usando Promise.all
+
+      // Atualizar estado local imediatamente para UX responsiva
+      setMilitares(prev => {
+        const outrasAlas = prev.filter(m => m.ala !== ala);
+        const novaOrdem = militaresOrdenados.map((m, i) => ({ ...m, ordem: i }));
+        return [...outrasAlas, ...novaOrdem].sort((a, b) => {
+          if (a.ala !== b.ala) return a.ala - b.ala;
+          return (a.ordem || 0) - (b.ordem || 0);
+        });
+      });
+
+      // Persistir no banco em paralelo
       const updates = militaresOrdenados.map((militar, index) => 
         supabase
           .from('militares_escalados')
@@ -250,25 +279,19 @@ export function useEscala() {
 
       const results = await Promise.all(updates);
       
-      // Verificar se houve erros
       const errors = results.filter(r => r.error);
       if (errors.length > 0) {
         console.error('❌ [REORDENAR] Erros encontrados:', errors);
         throw errors[0].error;
       }
       
-      console.log('✅ [REORDENAR] Updates concluídos, executando refetch...');
-      
-      // Pequeno delay para garantir consistência do banco
-      await new Promise(resolve => setTimeout(resolve, 300));
-      
-      await fetchEscala(mesReferencia);
-      
       console.log('✅ [REORDENAR] Reordenação concluída!');
       return true;
     } catch (error: any) {
       console.error('❌ [REORDENAR] Erro:', error);
       toast.error('Erro ao reordenar militares');
+      // Em caso de erro, recarregar do banco para restaurar estado correto
+      await fetchEscala(mesReferencia);
       return false;
     }
   };
@@ -292,6 +315,6 @@ export function useEscala() {
     reordenarMilitares,
     getMilitaresPorAla,
     changeMes,
-    refetch: () => fetchEscala(mesReferencia),
+    refetch: async () => { await fetchEscala(mesReferencia); },
   };
 }
