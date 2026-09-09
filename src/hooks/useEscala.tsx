@@ -207,12 +207,17 @@ export function useEscala() {
 
   const removeMilitar = async (militarId: string) => {
     try {
-      const { error } = await supabase
+      const { error, count } = await supabase
         .from('militares_escalados')
-        .delete()
+        .delete({ count: 'exact' })
         .eq('id', militarId);
 
       if (error) throw error;
+
+      if (count === 0) {
+        console.warn('⚠️ [ESCALA] Delete retornou 0 linhas afetadas (possível bloqueio de RLS):', militarId);
+        throw new Error('Sem permissão para remover este militar. Tente novamente.');
+      }
 
       // Atualizar estado local imediatamente
       setMilitares(prev => prev.filter(m => m.id !== militarId));
