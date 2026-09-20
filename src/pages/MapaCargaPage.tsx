@@ -177,35 +177,33 @@ function MateriaisPorCategoria({
   const CATEGORIAS_ORDEM = prefixoViatura === 'SAO' ? CATEGORIAS_SAO : CATEGORIAS_PADRAO;
   
   // SAO tem ordem FIXA de categorias (não permite reordenação)
-  const isSAO = prefixoViatura === 'SAO';
+  const isSAO = prefixoViatura.trim().toUpperCase().startsWith('SAO');
 
   // Estado para ordem customizada de categorias (carregado do banco - COMPARTILHADO)
   const [ordemCategorias, setOrdemCategorias] = useState<string[]>(CATEGORIAS_ORDEM);
   const [ordemCategoriasCarregada, setOrdemCategoriasCarregada] = useState(false);
-  const [viaturaId, setViaturaId] = useState<string | null>(null);
+  // viaturaId agora é obtido diretamente dos materiais (todos têm viatura_id)
+  const viaturaId = materiais.length > 0 ? materiais[0].viatura_id : null;
 
   // Carregar ordem das categorias do banco ao montar (COMPARTILHADA entre todos os usuários)
-  // SAO tem ordem FIXA e não carrega do banco
   useEffect(() => {
     const carregarOrdemCategorias = async () => {
       try {
-        // SAO usa ordem fixa, não carrega do banco
-        if (prefixoViatura === 'SAO') {
-          setOrdemCategoriasCarregada(true);
-          return;
-        }
-        
-        // Buscar ordem salva na tabela viaturas (coluna ordem_categorias)
+        // Buscar a viatura pelo prefixo para obter a ordem das categorias
         const { data: viaturaData } = await supabase
           .from('viaturas')
           .select('id, ordem_categorias')
-          .eq('prefixo', prefixoViatura)
-          .single();
+          .ilike('prefixo', prefixoViatura.trim())
+          .maybeSingle();
 
         if (viaturaData) {
-          setViaturaId(viaturaData.id);
-          // Se houver ordem salva, usar ela
-          if (viaturaData.ordem_categorias && Array.isArray(viaturaData.ordem_categorias) && viaturaData.ordem_categorias.length > 0) {
+          // Se houver ordem salva e não for SAO (SAO tem ordem fixa), usar ela
+          if (
+            !isSAO &&
+            viaturaData.ordem_categorias &&
+            Array.isArray(viaturaData.ordem_categorias) &&
+            viaturaData.ordem_categorias.length > 0
+          ) {
             setOrdemCategorias(viaturaData.ordem_categorias);
           }
         }
@@ -249,24 +247,27 @@ function MateriaisPorCategoria({
     const newOrder = [...categoriasOrdenadas];
     [newOrder[index], newOrder[index - 1]] = [newOrder[index - 1], newOrder[index]];
     
+    // Atualizar estado local PRIMEIRO
     setOrdemCategorias(newOrder);
     
-    // Salvar ordem no banco imediatamente (COMPARTILHADA entre todos os usuários)
-    if (viaturaId) {
-      try {
+    // Salvar ordem no banco — buscar o id da viatura pelo prefixo
+    try {
+      const { data: vData } = await supabase
+        .from('viaturas')
+        .select('id')
+        .ilike('prefixo', prefixoViatura.trim())
+        .maybeSingle();
+      if (vData?.id) {
         await supabase
           .from('viaturas')
           .update({ ordem_categorias: newOrder })
-          .eq('id', viaturaId);
-      } catch (error) {
-        console.error('Erro ao salvar ordem das categorias:', error);
+          .eq('id', vData.id);
       }
+    } catch (error) {
+      console.error('Erro ao salvar ordem das categorias:', error);
     }
     
-    // Marcar que houve mudanças pendentes
-    if (setReorderPendingChanges) {
-      setReorderPendingChanges(true);
-    }
+    if (setReorderPendingChanges) setReorderPendingChanges(true);
   };
 
   // Função para mover categoria para baixo (COMPARTILHADA)
@@ -280,24 +281,27 @@ function MateriaisPorCategoria({
     const newOrder = [...categoriasOrdenadas];
     [newOrder[index], newOrder[index + 1]] = [newOrder[index + 1], newOrder[index]];
     
+    // Atualizar estado local PRIMEIRO
     setOrdemCategorias(newOrder);
     
-    // Salvar ordem no banco imediatamente (COMPARTILHADA entre todos os usuários)
-    if (viaturaId) {
-      try {
+    // Salvar ordem no banco — buscar o id da viatura pelo prefixo
+    try {
+      const { data: vData } = await supabase
+        .from('viaturas')
+        .select('id')
+        .ilike('prefixo', prefixoViatura.trim())
+        .maybeSingle();
+      if (vData?.id) {
         await supabase
           .from('viaturas')
           .update({ ordem_categorias: newOrder })
-          .eq('id', viaturaId);
-      } catch (error) {
-        console.error('Erro ao salvar ordem das categorias:', error);
+          .eq('id', vData.id);
       }
+    } catch (error) {
+      console.error('Erro ao salvar ordem das categorias:', error);
     }
     
-    // Marcar que houve mudanças pendentes
-    if (setReorderPendingChanges) {
-      setReorderPendingChanges(true);
-    }
+    if (setReorderPendingChanges) setReorderPendingChanges(true);
   };
 
   const [categoriasAbertas, setCategoriasAbertas] = useState<Record<string, boolean>>(
