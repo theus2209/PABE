@@ -197,9 +197,8 @@ function MateriaisPorCategoria({
           .maybeSingle();
 
         if (viaturaData) {
-          // Se houver ordem salva e não for SAO (SAO tem ordem fixa), usar ela
+          // Se houver ordem salva, usar ela (incluindo SAO)
           if (
-            !isSAO &&
             viaturaData.ordem_categorias &&
             Array.isArray(viaturaData.ordem_categorias) &&
             viaturaData.ordem_categorias.length > 0
@@ -237,9 +236,7 @@ function MateriaisPorCategoria({
   });
 
   // Função para mover categoria para cima (COMPARTILHADA)
-  // SAO NÃO permite reordenação de categorias
   const moveCategoriaUp = async (categoria: string) => {
-    if (isSAO) return; // SAO tem ordem fixa
     
     const index = categoriasOrdenadas.indexOf(categoria);
     if (index <= 0) return;
@@ -271,9 +268,7 @@ function MateriaisPorCategoria({
   };
 
   // Função para mover categoria para baixo (COMPARTILHADA)
-  // SAO NÃO permite reordenação de categorias
   const moveCategoriaDown = async (categoria: string) => {
-    if (isSAO) return; // SAO tem ordem fixa
     
     const index = categoriasOrdenadas.indexOf(categoria);
     if (index === -1 || index >= categoriasOrdenadas.length - 1) return;
@@ -342,8 +337,8 @@ function MateriaisPorCategoria({
           <Card key={categoria} className="overflow-hidden">
             <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-4 flex items-center justify-between hover:from-red-700 hover:to-red-800 transition-colors">
               <div className="flex items-center gap-2">
-                {/* Setas para reordenar categorias - só aparecem no modo de reordenação E se não for SAO */}
-                {isReordering && !isSAO && (
+                {/* Setas para reordenar categorias - aparecem no modo de reordenação */}
+                {isReordering && (
                   <div className="flex flex-col gap-0.5">
                     <Button
                       onClick={(e) => {
